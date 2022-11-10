@@ -66,7 +66,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '1005254697426',
     projectId: 'apexology',
     storageBucket: 'apexology.appspot.com',
-    iosClientId: '1005254697426-015f2jctnivq1ei4nrfke3ktvvji6ei4.apps.googleusercontent.com',
+    iosClientId:
+        '1005254697426-015f2jctnivq1ei4nrfke3ktvvji6ei4.apps.googleusercontent.com',
     iosBundleId: 'com.example.apexology',
   );
 
@@ -76,7 +77,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '1005254697426',
     projectId: 'apexology',
     storageBucket: 'apexology.appspot.com',
-    iosClientId: '1005254697426-015f2jctnivq1ei4nrfke3ktvvji6ei4.apps.googleusercontent.com',
+    iosClientId:
+        '1005254697426-015f2jctnivq1ei4nrfke3ktvvji6ei4.apps.googleusercontent.com',
     iosBundleId: 'com.example.apexology',
   );
 }
