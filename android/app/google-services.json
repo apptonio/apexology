@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1005254697426",
+    "project_id": "apexology",
+    "storage_bucket": "apexology.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1005254697426:android:a2fe28a1b58a7a9958a80b",
+        "android_client_info": {
+          "package_name": "com.example.apexology"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1005254697426-5ub6nik8sc3du7pl5n6pg53ff5jdqpan.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBpH-t5c_RNohfAINX-qBsm_aFl3rL1Sw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1005254697426-5ub6nik8sc3du7pl5n6pg53ff5jdqpan.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
