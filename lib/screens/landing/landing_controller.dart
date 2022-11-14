@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 /// We can set different states with it and then render proper Widget depending on the state
 ///
 
-class LandingController extends GetxController{
+class LandingController extends GetxController {
   ///
   /// DEPENDENCIES
   ///
