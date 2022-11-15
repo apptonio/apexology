@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:apexology/models/maps/maps.dart';
 import 'package:apexology/models/stats/stats.dart';
 import 'package:dio/dio.dart';
 import 'package:apexology/constants/endpoints.dart';
@@ -29,19 +30,23 @@ class HTTP {
     );
   }
 
-Future<List<News>> getNews() async {
+  Future<List<News>> getNews() async {
     Response response = await client.get(MyEndpoints.news);
     var decodedString = json.decode(response.data);
     return (decodedString as List).map((data) => News.fromJson(data)).toList();
   }
 
-
-Future<Stats> getStats() async {
+  Future<Stats> getStats() async {
     Response response = await client.get(MyEndpoints.stats);
     var decodedString = json.decode(response.data);
     return Stats.fromJson(decodedString);
   }
-}
 
+  Future<Maps> getMaps() async {
+    Response response = await client.get(MyEndpoints.maps);
+    var decodedString = json.decode(response.data);
+    return Maps.fromJson(decodedString);
+  }
+}
 
 final http = HTTP();

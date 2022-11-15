@@ -11,8 +11,8 @@ class MyEndpoints {
 
   static const stats =
       'bridge?auth=$apiKey&player=$testPlayer&platform=$testPlatform';
-  static const mapRotation = 'maprotation?auth=$apiKey&version=2';
-  static const craftingRotation = 'crafting?auth=$apiKey';
+  static const maps = 'maprotation?auth=$apiKey&version=2';
+  static const items = 'crafting?auth=$apiKey';
   static const news = 'news?auth=$apiKey';
-  static const serverStatus = 'servers?auth=$apiKey';
+  static const server = 'servers?auth=$apiKey';
 }

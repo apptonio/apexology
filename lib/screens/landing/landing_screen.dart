@@ -10,7 +10,7 @@ class LandingScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: FutureBuilder(
-          future: http.getStats(),
+          future: http.getMaps(),
           builder: (context, snapshot) {
             if (snapshot.hasError) {
               return const Center(
@@ -23,9 +23,13 @@ class LandingScreen extends StatelessWidget {
               );
             }
 
-            String playerName = snapshot.data!.global.name;
+            String map1 = snapshot.data!.battleRoyale.current.map;
+            String map2 = snapshot.data!.ranked.current.map;
+            String map3 = snapshot.data!.arenas.current.map;
+            String map4 = snapshot.data!.arenasRanked.current.map;
+            String map5 = snapshot.data!.ltm.current.map;
 
-            return SizedBox(height: 500, child: Text(playerName));
+            return Column(children: [Text(map1), Text(map2), Text(map3), Text(map4), Text(map5)]);
           },
         ),
       ),
