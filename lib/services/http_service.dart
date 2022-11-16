@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:apexology/models/bundles/bundles.dart';
 import 'package:apexology/models/maps/maps.dart';
 import 'package:apexology/models/stats/stats.dart';
 import 'package:dio/dio.dart';
@@ -47,6 +48,12 @@ class HTTP {
     var decodedString = json.decode(response.data);
     return Maps.fromJson(decodedString);
   }
+
+  Future<List<Bundles>> getBundles() async {
+    Response response = await client.get(MyEndpoints.bundles);
+    return (response.data as List).map((data) => Bundles.fromJson(data)).toList();
+  }
+
 }
 
 final http = HTTP();

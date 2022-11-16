@@ -1,4 +1,5 @@
 import 'package:apexology/constants/theme.dart';
+import 'package:apexology/models/bundles/bundles.dart';
 import 'package:apexology/services/http_service.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,7 @@ class LandingScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: FutureBuilder(
-          future: http.getMaps(),
+          future: http.getBundles(),
           builder: (context, snapshot) {
             if (snapshot.hasError) {
               return const Center(
@@ -23,13 +24,13 @@ class LandingScreen extends StatelessWidget {
               );
             }
 
-            String map1 = snapshot.data!.battleRoyale.current.map;
-            String map2 = snapshot.data!.ranked.current.map;
-            String map3 = snapshot.data!.arenas.current.map;
-            String map4 = snapshot.data!.arenasRanked.current.map;
-            String map5 = snapshot.data!.ltm.current.map;
+            List<Bundles> list = snapshot.data!;
 
-            return Column(children: [Text(map1), Text(map2), Text(map3), Text(map4), Text(map5)]);
+            return ListView.builder(itemBuilder: ((context, index) {
+               
+              Bundles bundles = list[index];
+              return Text(bundles.bundle);
+            }),itemCount: list.length);
           },
         ),
       ),

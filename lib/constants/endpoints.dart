@@ -12,7 +12,7 @@ class MyEndpoints {
   static const stats =
       'bridge?auth=$apiKey&player=$testPlayer&platform=$testPlatform';
   static const maps = 'maprotation?auth=$apiKey&version=2';
-  static const items = 'crafting?auth=$apiKey';
+  static const bundles = 'crafting?auth=$apiKey';
   static const news = 'news?auth=$apiKey';
   static const server = 'servers?auth=$apiKey';
 }
