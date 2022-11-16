@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:get/get.dart';
+
 
 ///
 /// This is a controller in which we write logic concerning [HelloScreen]
@@ -11,8 +14,8 @@ class LandingController extends GetxController {
   ///
   /// DEPENDENCIES
   ///
-
   ///
+
   /// INIT
   ///
 
@@ -23,5 +26,4 @@ class LandingController extends GetxController {
 
   ///
   /// METHODS
-  ///
 }

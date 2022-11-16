@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-
 import 'landing_controller.dart';
 
 ///

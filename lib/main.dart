@@ -2,6 +2,7 @@ import 'package:apexology/constants/localization.dart';
 import 'package:apexology/constants/pages.dart';
 import 'package:apexology/services/app_lifecycle_service.dart';
 import 'package:apexology/constants/theme.dart';
+import 'package:apexology/services/connectivity_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,7 +17,9 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const ApexologyApp());
+  Get.put(ConnectivityService());
+  ConnectivityService().connectivityListener;
+  runApp(ApexologyApp());
 }
 
 class InitialBinding extends Bindings {
@@ -27,11 +30,12 @@ class InitialBinding extends Bindings {
 }
 
 class ApexologyApp extends StatelessWidget {
-  const ApexologyApp({super.key});
+  ApexologyApp({super.key});
+
+  final connect = Get.find<ConnectivityService>();
 
   @override
   Widget build(BuildContext context) => ScreenUtilInit(
-        /// Size of `Pixel XL`, device the designer uses in his designs on Figma
         designSize: const Size(412, 732),
         builder: (_, __) => GetMaterialApp(
           onGenerateTitle: (_) => 'appName'.tr,
