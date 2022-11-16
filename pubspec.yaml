@@ -46,11 +46,13 @@ dependencies:
   cached_network_image: ^3.2.2
   animations: ^2.0.7
   intro_slider: ^4.2.0
-  http: ^0.13.5
   get: ^4.6.5
   share_plus: ^6.2.0
-
-
+  dio: ^4.0.6
+  build_runner: ^2.1.11
+  freezed: ^2.0.3+1
+  freezed_annotation: ^2.0.3
+  json_serializable: ^6.5.4
 
 dev_dependencies:
   flutter_test:

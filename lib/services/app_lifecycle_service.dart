@@ -4,7 +4,8 @@ import 'package:get/get.dart';
 /// This is a service used to triger methods when the app goes in a different state
 ///
 
-class AppLifecycleService extends FullLifeCycleController with FullLifeCycleMixin {
+class AppLifecycleService extends FullLifeCycleController
+    with FullLifeCycleMixin {
   ///
   /// DEPENDENCIES
   ///
@@ -14,22 +15,14 @@ class AppLifecycleService extends FullLifeCycleController with FullLifeCycleMixi
   ///
 
   @override
-  void onDetached() {
-
-  }
+  void onDetached() {}
 
   @override
-  void onInactive() {
-
-  }
+  void onInactive() {}
 
   @override
-  void onPaused() {
-
-  }
+  void onPaused() {}
 
   @override
-  void onResumed() {
-
-  }
+  void onResumed() {}
 }

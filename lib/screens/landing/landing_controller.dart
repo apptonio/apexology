@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:get/get.dart';
+
 
 ///
 /// This is a controller in which we write logic concerning [HelloScreen]
@@ -7,12 +10,12 @@ import 'package:get/get.dart';
 /// We can set different states with it and then render proper Widget depending on the state
 ///
 
-class LandingController extends GetxController{
+class LandingController extends GetxController {
   ///
   /// DEPENDENCIES
   ///
-
   ///
+
   /// INIT
   ///
 
@@ -23,5 +26,4 @@ class LandingController extends GetxController{
 
   ///
   /// METHODS
-  ///
 }

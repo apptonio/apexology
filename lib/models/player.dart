@@ -1,3 +1,0 @@
-class Player {
-  String name = '';
-}
