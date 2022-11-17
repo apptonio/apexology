@@ -18,11 +18,9 @@ class ConnectivityService extends GetxService {
       Connectivity().onConnectivityChanged.listen((result) {
     if (result == ConnectivityResult.none) {
       isConnected = false;
-      print(isConnected);
     } else if (result == ConnectivityResult.wifi ||
         result == ConnectivityResult.mobile) {
       isConnected = true;
-      print(isConnected);
     }
   });
 }
