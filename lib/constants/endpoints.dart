@@ -15,4 +15,7 @@ class MyEndpoints {
   static const bundles = 'crafting?auth=$apiKey';
   static const news = 'news?auth=$apiKey';
   static const server = 'servers?auth=$apiKey';
+
+  static const privacyPolicy =
+      'https://www.termsfeed.com/live/7cfd4f0d-4985-4d63-be9a-db232cf08d51';
 }

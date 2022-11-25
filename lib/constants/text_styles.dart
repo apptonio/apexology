@@ -15,6 +15,18 @@ class MyTextStyles {
     fontWeight: FontWeight.w500,
     height: 1.6,
   );
+
+  static final body = GoogleFonts.roboto(
+    color: MyColors.black,
+    fontSize: 12,
+    fontWeight: FontWeight.w500,
+  );
+
+  static final link = GoogleFonts.roboto(
+    fontSize: 12,
+    fontWeight: FontWeight.w500,
+  );
+
   static final error = GoogleFonts.roboto(
     color: MyColors.red,
     fontSize: 20,
