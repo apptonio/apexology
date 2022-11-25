@@ -1,3 +1,5 @@
+import 'package:apexology/screens/home/home_binding.dart';
+import 'package:apexology/screens/home/home_screen.dart';
 import 'package:apexology/screens/landing/landing_binding.dart';
 import 'package:apexology/screens/landing/landing_screen.dart';
 import 'package:get/get.dart';
@@ -14,9 +16,15 @@ final pages = [
     page: LandingScreen.new,
     binding: LandingBinding(),
   ),
+  GetPage(
+    name: MyRoutes.homeScreen,
+    page: HomeScreen.new,
+    binding: HomeBinding(),
+  )
 ];
 
 /// All pages have their designated names which can be found here
 class MyRoutes {
   static const landingScreen = '/landing-screen';
+  static const homeScreen = '/home-screen';
 }

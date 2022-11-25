@@ -2,9 +2,13 @@ import 'dart:math';
 
 import 'package:apexology/constants/assets.dart';
 import 'package:apexology/constants/endpoints.dart';
+import 'package:apexology/constants/pages.dart';
 import 'package:apexology/constants/text_styles.dart';
+import 'package:apexology/screens/landing/landing_controller.dart';
+import 'package:apexology/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class LandingScreen extends StatelessWidget {
@@ -12,6 +16,9 @@ class LandingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final controller = Get.put(LandingController());
+
     return Scaffold(
       body: Center(
         child: Container(
@@ -63,7 +70,9 @@ class LandingScreen extends StatelessWidget {
                             Center(
                               child: SignInButton(
                                 Buttons.Google,
-                                onPressed: () {},
+                                onPressed: () {
+                                  AuthService().signInWithGoogle();
+                                },
                               ),
                             ),
                             Center(
