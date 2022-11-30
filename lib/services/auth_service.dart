@@ -1,4 +1,3 @@
-import 'package:apexology/constants/pages.dart';
 import 'package:apexology/screens/home/home_screen.dart';
 import 'package:apexology/screens/landing/landing_screen.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +39,7 @@ class AuthService extends GetxService {
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 
-  signOut() {
+  Future<void> signOut() async{
     FirebaseAuth.instance.signOut();
   }
 }
