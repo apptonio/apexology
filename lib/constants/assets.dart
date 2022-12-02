@@ -14,6 +14,4 @@ class MyAssets {
   static const bangalore = 'assets/images/bangalore.jpeg';
   static const lifeline = 'assets/images/lifeline.jpeg';
   static const gibraltar = 'assets/images/gibraltar.jpeg';
-
-  static const List<String> splashList = [wraith, mirage, caustic, bloodhound, bangalore, lifeline, gibraltar];
 }
