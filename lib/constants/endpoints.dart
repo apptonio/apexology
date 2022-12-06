@@ -18,4 +18,6 @@ class MyEndpoints {
 
   static const privacyPolicy =
       'https://www.termsfeed.com/live/7cfd4f0d-4985-4d63-be9a-db232cf08d51';
+  
+  static const landingImagesContribution = 'https://alphacoders.com/users/profile/18905';
 }

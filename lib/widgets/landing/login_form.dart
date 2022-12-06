@@ -1,7 +1,6 @@
 import 'package:apexology/constants/colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
@@ -9,16 +8,13 @@ import 'package:get/get.dart';
 import '../../screens/landing/landing_controller.dart';
 
 class LoginForm extends StatelessWidget {
-   LoginForm({super.key});
-
+  LoginForm({super.key});
 
   final _auth = FirebaseAuth.instance;
   final controller = Get.put(LandingController());
-    
+
   @override
   Widget build(BuildContext context) {
-
-
     return FormBuilder(
         key: controller.formKey.value,
         child: SingleChildScrollView(
@@ -34,13 +30,13 @@ class LoginForm extends StatelessWidget {
               }
             },
             name: 'email',
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               labelText: 'Email',
               // labelStyle: TextStyle(
               //     color: _emailFocusNode.hasFocus
               //         ? MyColors.blue
               //         : MyColors.black),
-              border: const  OutlineInputBorder(
+              border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.black12)),
               focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(
@@ -56,7 +52,7 @@ class LoginForm extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           FormBuilderTextField(
-           // focusNode: _passwordFocusNode,
+            // focusNode: _passwordFocusNode,
             onTap: () {
               FocusScopeNode currentFocus = FocusScope.of(context);
 
@@ -65,13 +61,13 @@ class LoginForm extends StatelessWidget {
               }
             },
             name: 'password',
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               labelText: 'Password',
               labelStyle: TextStyle(
                   // color: _passwordFocusNode.hasFocus
                   //     ? MyColors.blue
                   //     : MyColors.black
-                      ),
+                  ),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.black12)),
               focusedBorder: OutlineInputBorder(

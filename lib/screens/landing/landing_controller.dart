@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:io';
-
 import 'package:apexology/constants/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -14,11 +12,6 @@ import 'package:get/get.dart';
 ///
 
 class LandingController extends GetxController {
-  ///
-  /// DEPENDENCIES
-  ///
-  ///
-  var splashIndex = 0.obs;
   var emailIsPressed = false.obs;
 
   final formKey = GlobalKey<FormBuilderState>().obs;
@@ -28,15 +21,19 @@ class LandingController extends GetxController {
 
   Timer? timer;
 
-  List<String> splashList = [MyAssets.wraith, MyAssets.mirage, MyAssets.caustic, MyAssets.bloodhound, MyAssets.bangalore, MyAssets.lifeline, MyAssets.gibraltar];
-
-  /// INIT
-  ///
+  List<String> landingCarouselList = [
+    MyAssets.wraith,
+    MyAssets.mirage,
+    MyAssets.caustic,
+    MyAssets.bloodhound,
+    MyAssets.bangalore,
+    MyAssets.lifeline,
+    MyAssets.gibraltar
+  ];
 
   @override
   Future<void> onInit() async {
     super.onInit();
-    timer = Timer.periodic(const Duration(seconds: 1), (Timer t) => swapSplashImage());
   }
 
 
@@ -46,22 +43,8 @@ class LandingController extends GetxController {
 
   @override
   void dispose() {
-    timer?.cancel();
     _emailFocusNode.value.dispose();
     _passwordFocusNode.value.dispose();
     super.dispose();
   }
-
-  void swapSplashImage() {
-    if(splashIndex.value == 6) {
-      timer?.cancel();
-      return;
-    }
-    sleep(const Duration(seconds:3));
-    splashIndex.value ++;
-    print(splashIndex);
-  }
-
-  ///
-  /// METHODS
 }
