@@ -36,6 +36,7 @@ class MyTextStyles {
   );
 
   static final link = GoogleFonts.roboto(
+    color: MyColors.blue,
     fontSize: 12.sp,
     fontWeight: FontWeight.w500,
   );
@@ -45,7 +46,7 @@ class MyTextStyles {
     fontSize: 10.sp,
     fontWeight: FontWeight.w500,
   );
-    static final linkSmallWhite = GoogleFonts.roboto(
+  static final linkSmallWhite = GoogleFonts.roboto(
     color: Colors.lightBlue,
     fontSize: 10.sp,
     fontWeight: FontWeight.w500,

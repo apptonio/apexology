@@ -1,7 +1,8 @@
 import 'package:apexology/constants/colors.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:apexology/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 
@@ -10,18 +11,17 @@ import '../../screens/landing/landing_controller.dart';
 class LoginForm extends StatelessWidget {
   LoginForm({super.key});
 
-  final _auth = FirebaseAuth.instance;
   final controller = Get.put(LandingController());
 
   @override
   Widget build(BuildContext context) {
-    return FormBuilder(
+    return Obx(() => FormBuilder(
         key: controller.formKey.value,
         child: SingleChildScrollView(
             child: Column(children: [
           const SizedBox(height: 10),
           FormBuilderTextField(
-            //focusNode: _emailFocusNode,
+            focusNode: controller.emailFocusNode.value,
             onTap: () {
               FocusScopeNode currentFocus = FocusScope.of(context);
 
@@ -30,15 +30,15 @@ class LoginForm extends StatelessWidget {
               }
             },
             name: 'email',
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               labelText: 'Email',
-              // labelStyle: TextStyle(
-              //     color: _emailFocusNode.hasFocus
-              //         ? MyColors.blue
-              //         : MyColors.black),
-              border: OutlineInputBorder(
+              labelStyle: TextStyle(
+                  color: controller.emailFocusNode.value.hasFocus
+                      ? MyColors.blue
+                      : MyColors.black),
+              border: const OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.black12)),
-              focusedBorder: OutlineInputBorder(
+              focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(
                   color: MyColors.blue,
                 ),
@@ -52,7 +52,7 @@ class LoginForm extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           FormBuilderTextField(
-            // focusNode: _passwordFocusNode,
+            focusNode: controller.passwordFocusNode.value,
             onTap: () {
               FocusScopeNode currentFocus = FocusScope.of(context);
 
@@ -61,16 +61,15 @@ class LoginForm extends StatelessWidget {
               }
             },
             name: 'password',
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               labelText: 'Password',
               labelStyle: TextStyle(
-                  // color: _passwordFocusNode.hasFocus
-                  //     ? MyColors.blue
-                  //     : MyColors.black
-                  ),
-              border: OutlineInputBorder(
+                  color: controller.passwordFocusNode.value.hasFocus
+                      ? MyColors.blue
+                      : MyColors.black),
+              border: const OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.black12)),
-              focusedBorder: OutlineInputBorder(
+              focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(
                   color: MyColors.blue,
                 ),
@@ -79,89 +78,31 @@ class LoginForm extends StatelessWidget {
             validator: FormBuilderValidators.required(),
             autovalidateMode: AutovalidateMode.onUserInteraction,
           ),
-          const SizedBox(height: 5),
-          // WideButton(
-          //     title: 'LOG IN',
-          //     action: () async {
-          //       final validationCheck = _formKey.currentState?.validate();
-          //       if (validationCheck != null && validationCheck) {
-          //         try {
-          //           await _auth
-          //               .signInWithEmailAndPassword(
-          //                   email:
-          //                       _formKey.currentState?.fields['email']?.value,
-          //                   password: _formKey
-          //                       .currentState?.fields['password']?.value)
-          //               .then((value) =>
-          //                   router.navigateTo((context), Routes.homeScreen));
-          //         } on PlatformException catch (err) {
-          //           var message =
-          //               'An error occurred, please check your credentials.';
-          //           if (err.message != null) {
-          //             message = err.message!;
-          //           }
-          //           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          //             content: Text(message),
-          //             behavior: SnackBarBehavior.floating,
-          //             margin: const EdgeInsets.all(20.0),
-          //           ));
-          //         }
-          //       }
-          //     }),
-          // const SizedBox(
-          //   height: 10,
-          // ),
-          // Divider(
-          //   color: Colors.black12,
-          //   indent: 40,
-          //   endIndent: 40,
-          // ),
-          // const SizedBox(
-          //   height: 10,
-          // ),
-          // WideButton(
-          //     title: 'SIGN IN',
-          //     action: () async {
-          //       final validationCheck = _formKey.currentState?.validate();
-          //       if (validationCheck != null && validationCheck) {
-          //         try {
-          //           await _auth
-          //               .createUserWithEmailAndPassword(
-          //                   email:
-          //                       _formKey.currentState?.fields['email']?.value,
-          //                   password: _formKey
-          //                       .currentState?.fields['password']?.value)
-          //               .then((value) =>
-          //                   router.navigateTo((context), Routes.homeScreen));
-          //         } on FirebaseAuthException catch (e) {
-          //           if (e.code == 'weak-password') {
-          //             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          //               content: Text('Please provide a stronger password.'),
-          //               behavior: SnackBarBehavior.floating,
-          //               margin: EdgeInsets.all(20.0),
-          //             ));
-          //           } else if (e.code == 'email-already-in-use') {
-          //             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          //               content:
-          //                   Text('An account with this email already exists.'),
-          //               behavior: SnackBarBehavior.floating,
-          //               margin: EdgeInsets.all(20.0),
-          //             ));
-          //           }
-          //         } on PlatformException catch (err) {
-          //           var message =
-          //               'An error occurred, please check your credentials';
-          //           if (err.message != null) {
-          //             message = err.message!;
-          //           }
-          //           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          //             content: Text(message),
-          //             behavior: SnackBarBehavior.floating,
-          //             margin: const EdgeInsets.all(20.0),
-          //           ));
-          //         }
-          //       }
-          //     })
-        ])));
+          const SizedBox(height: 20),
+
+
+               Obx(() => AnimatedCrossFade(
+                            firstChild: SignInButton(
+                              Buttons.Email,
+                              text: 'Login with Email',
+                              onPressed: () {
+                                AuthService().loginWithEmail();
+                              },
+                            ),
+                            secondChild: SignInButton(
+                              Buttons.Email,
+                              text: 'Sign up with Email',
+                              onPressed: () {
+                                AuthService().signUpWithEmail();
+                              },
+                            ),
+                            crossFadeState: controller.isLogin.value
+                                ? CrossFadeState.showFirst
+                                : CrossFadeState.showSecond,
+                            duration: const Duration(milliseconds: 300)))
+         
+          
+            
+        ]))));
   }
 }

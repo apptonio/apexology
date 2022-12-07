@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
+import '../../services/request_status.dart';
+
 ///
 /// This is a controller in which we write logic concerning [LandingScreen]
 /// The controller uses a [StateMixin]
@@ -13,13 +15,16 @@ import 'package:get/get.dart';
 
 class LandingController extends GetxController {
   var emailIsPressed = false.obs;
+  var isLogin = true.obs;
 
   final formKey = GlobalKey<FormBuilderState>().obs;
 
-  final _emailFocusNode = FocusNode().obs;
-  final _passwordFocusNode = FocusNode().obs;
+  final emailFocusNode = FocusNode().obs;
+  final passwordFocusNode = FocusNode().obs;
 
-  Timer? timer;
+  final requestStatus = RequestStatus.LOADING.obs;
+
+  
 
   List<String> landingCarouselList = [
     MyAssets.wraith,
@@ -36,15 +41,16 @@ class LandingController extends GetxController {
     super.onInit();
   }
 
-
   void changeEmailButtonState() {
     emailIsPressed.value = true;
   }
 
   @override
   void dispose() {
-    _emailFocusNode.value.dispose();
-    _passwordFocusNode.value.dispose();
+    emailFocusNode.value.dispose();
+    passwordFocusNode.value.dispose();
     super.dispose();
   }
+
+  void setRequestStatus(RequestStatus value) => requestStatus.value = value;
 }

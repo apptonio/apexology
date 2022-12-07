@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:apexology/screens/landing/landing_controller.dart';
 import '../../constants/endpoints.dart';
+import '../../services/request_status.dart';
 
 class LoginCard extends StatelessWidget {
   LoginCard({super.key});
@@ -20,72 +21,137 @@ class LoginCard extends StatelessWidget {
     return Center(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 32.0.w),
-        child: Card(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-          child: SizedBox(
-            width: double.infinity,
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Center(
-                    child: Text(
-                      'Welcome to Apexology',
-                      style: MyTextStyles.header,
-                    ),
-                  ),
-                  SizedBox(height: 10.h),
-                  Center(
-                    child: Text('Choose one of the options below',
-                        style: MyTextStyles.body),
-                  ),
-                  SizedBox(height: 20.h),
-                  Center(
-                      child: Obx(() => AnimatedCrossFade(
-                          firstChild: SignInButton(
-                            Buttons.Email,
-                            onPressed: () {
-                              controller.changeEmailButtonState();
-                            },
-                          ),
-                          secondChild: LoginForm(),
-                          crossFadeState: controller.emailIsPressed.value
-                              ? CrossFadeState.showSecond
-                              : CrossFadeState.showFirst,
-                          duration: const Duration(milliseconds: 300)))),
-                  SizedBox(height: 10.h),
-                  Center(
-                    child: SignInButton(
-                      Buttons.Google,
-                      onPressed: () {
-                        AuthService().signInWithGoogle();
-                      },
-                    ),
-                  ),
-                  SizedBox(height: 10.h),
-                  Center(
-                    child: RichText(
-                      text: TextSpan(
-                        text: 'By signing up you accept our ',
-                        style: MyTextStyles.bodySmall,
-                        children: [
-                          TextSpan(
-                            text: 'privacy policy',
-                            style: MyTextStyles.linkSmall,
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () async {
-                                await launchUrlString(MyEndpoints.privacyPolicy,
-                                    mode: LaunchMode.inAppWebView);
-                              },
-                          ),
-                        ],
+        child: Container(
+          decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color:
+                    const Color.fromARGB(255, 197, 188, 188).withOpacity(0.5),
+                blurRadius: 6.0,
+                spreadRadius: 2.0,
+                offset: const Offset(0.0, 0.0),
+              )
+            ],
+            borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(16),
+                topRight: Radius.circular(16),
+                bottomLeft: Radius.circular(16),
+                bottomRight: Radius.circular(16) // changes position of shadow
+                ),
+          ),
+          child: Card(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16.0)),
+            child: SizedBox(
+              width: double.infinity,
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Center(
+                      child: Text(
+                        'Welcome to Apexology',
+                        style: MyTextStyles.header,
                       ),
                     ),
-                  )
-                ],
+                    SizedBox(height: 10.h),
+                    Center(
+                        child: Obx(() => AnimatedCrossFade(
+                            firstChild: Text('Choose one of the options below',
+                                style: MyTextStyles.body),
+                            secondChild: RichText(
+                              text: TextSpan(
+                                text: "Don't have an account? ",
+                                style: MyTextStyles.body,
+                                children: [
+                                  TextSpan(
+                                    text: 'Sign up',
+                                    style: MyTextStyles.link,
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {
+                                        controller.isLogin.value = false;
+                                      },
+                                  ),
+                                ],
+                              ),
+                            ),
+                            crossFadeState: controller.emailIsPressed.value
+                                ? CrossFadeState.showSecond
+                                : CrossFadeState.showFirst,
+                            duration: const Duration(milliseconds: 300)))),
+                    SizedBox(height: 20.h),
+                    Center(
+                        child: Obx(() => AnimatedCrossFade(
+                            firstChild: SignInButton(
+                              Buttons.Email,
+                              text: 'Continue with Email',
+                              onPressed: () {
+                                controller.changeEmailButtonState();
+                              },
+                            ),
+                            secondChild: LoginForm(),
+                            crossFadeState: controller.emailIsPressed.value
+                                ? CrossFadeState.showSecond
+                                : CrossFadeState.showFirst,
+                            duration: const Duration(milliseconds: 300)))),
+                    Row(children: [
+                      Expanded(
+                        child: Container(
+                            margin:
+                                const EdgeInsets.only(left: 20.0, right: 20.0),
+                            child: const Divider(
+                              color: Colors.black,
+                              height: 36,
+                            )),
+                      ),
+                      Text(
+                        "OR",
+                        style: MyTextStyles.body,
+                      ),
+                      Expanded(
+                        child: Container(
+                            margin:
+                                const EdgeInsets.symmetric(horizontal: 20.0),
+                            child: const Divider(
+                              color: Colors.black,
+                              height: 36,
+                            )),
+                      ),
+                    ]),
+                    Center(
+                      child: SignInButton(
+                        Buttons.Google,
+                        text: 'Continue with Google',
+                        onPressed: () {
+                          AuthService().signInWithGoogle();
+                        },
+                      ),
+                    ),
+                    SizedBox(height: 10.h),
+                    Center(
+                      child: RichText(
+                        text: TextSpan(
+                          text: 'By signing up you accept our ',
+                          style: MyTextStyles.bodySmall,
+                          children: [
+                            TextSpan(
+                              text: 'privacy policy',
+                              style: MyTextStyles.linkSmall,
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () async {
+                                  await launchUrlString(
+                                      MyEndpoints.privacyPolicy,
+                                      mode: LaunchMode.inAppWebView);
+                                },
+                            ),
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           ),
