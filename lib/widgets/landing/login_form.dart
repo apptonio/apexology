@@ -79,30 +79,25 @@ class LoginForm extends StatelessWidget {
             autovalidateMode: AutovalidateMode.onUserInteraction,
           ),
           const SizedBox(height: 20),
-
-
-               Obx(() => AnimatedCrossFade(
-                            firstChild: SignInButton(
-                              Buttons.Email,
-                              text: 'Login with Email',
-                              onPressed: () {
-                                AuthService().loginWithEmail();
-                              },
-                            ),
-                            secondChild: SignInButton(
-                              Buttons.Email,
-                              text: 'Sign up with Email',
-                              onPressed: () {
-                                AuthService().signUpWithEmail();
-                              },
-                            ),
-                            crossFadeState: controller.isLogin.value
-                                ? CrossFadeState.showFirst
-                                : CrossFadeState.showSecond,
-                            duration: const Duration(milliseconds: 300)))
-         
-          
-            
+          Obx(() => AnimatedCrossFade(
+              firstChild: SignInButton(
+                Buttons.Email,
+                text: 'Login with Email',
+                onPressed: () {
+                  AuthService().loginWithEmail();
+                },
+              ),
+              secondChild: SignInButton(
+                Buttons.Email,
+                text: 'Sign up with Email',
+                onPressed: () {
+                  AuthService().signUpWithEmail();
+                },
+              ),
+              crossFadeState: controller.isLogin.value
+                  ? CrossFadeState.showFirst
+                  : CrossFadeState.showSecond,
+              duration: const Duration(milliseconds: 300)))
         ]))));
   }
 }

@@ -9,7 +9,6 @@ import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:apexology/screens/landing/landing_controller.dart';
 import '../../constants/endpoints.dart';
-import '../../services/request_status.dart';
 
 class LoginCard extends StatelessWidget {
   LoginCard({super.key});
@@ -61,22 +60,43 @@ class LoginCard extends StatelessWidget {
                         child: Obx(() => AnimatedCrossFade(
                             firstChild: Text('Choose one of the options below',
                                 style: MyTextStyles.body),
-                            secondChild: RichText(
-                              text: TextSpan(
-                                text: "Don't have an account? ",
-                                style: MyTextStyles.body,
-                                children: [
-                                  TextSpan(
-                                    text: 'Sign up',
-                                    style: MyTextStyles.link,
-                                    recognizer: TapGestureRecognizer()
-                                      ..onTap = () {
-                                        controller.isLogin.value = false;
-                                      },
+                            secondChild: AnimatedCrossFade(
+                                firstChild: RichText(
+                                  text: TextSpan(
+                                    text: "Don't have an account? ",
+                                    style: MyTextStyles.body,
+                                    children: [
+                                      TextSpan(
+                                        text: 'Sign up',
+                                        style: MyTextStyles.link,
+                                        recognizer: TapGestureRecognizer()
+                                          ..onTap = () {
+                                            controller.isLogin.value = false;
+                                          },
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
-                            ),
+                                ),
+                                secondChild: RichText(
+                                  text: TextSpan(
+                                    text: "Already have an account? ",
+                                    style: MyTextStyles.body,
+                                    children: [
+                                      TextSpan(
+                                        text: 'Log in',
+                                        style: MyTextStyles.link,
+                                        recognizer: TapGestureRecognizer()
+                                          ..onTap = () {
+                                            controller.isLogin.value = true;
+                                          },
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                crossFadeState: controller.isLogin.value
+                                    ? CrossFadeState.showFirst
+                                    : CrossFadeState.showSecond,
+                                duration: const Duration(milliseconds: 300)),
                             crossFadeState: controller.emailIsPressed.value
                                 ? CrossFadeState.showSecond
                                 : CrossFadeState.showFirst,
