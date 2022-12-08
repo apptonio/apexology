@@ -174,6 +174,6 @@ class LandingController extends GetxController {
 
   Future<void> signOut() async {
     await auth.value.signOut();
-    Get.offAll(LandingScreen());
+    Get.offAll(() => const LandingScreen());
   }
 }
