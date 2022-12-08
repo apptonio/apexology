@@ -33,6 +33,9 @@ class LandingController extends GetxController {
 
   @override
   Future<void> onInit() async {
+
+    // TODO: PRELOAD IMAGES 
+    
     super.onInit();
     auth.value.authStateChanges().listen((user) {
       if (user != null) {

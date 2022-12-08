@@ -19,7 +19,7 @@ class ConnectivityService extends GetxService {
     } else if (result == ConnectivityResult.wifi ||
         result == ConnectivityResult.mobile) {
       if (Get.currentRoute == MyRoutes.offlineScreen) {
-        Get.to(const LandingScreen(), binding: LandingBinding());
+        Get.back();
       }
     }
   });

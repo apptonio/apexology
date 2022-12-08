@@ -6,12 +6,6 @@ import 'package:apexology/screens/offline/offline_binding.dart';
 import 'package:apexology/screens/offline/offline_screen.dart';
 import 'package:get/get.dart';
 
-///
-/// All pages used in the application
-/// Also linked to the relevant bindings in order to
-/// initialize / dispose proper controllers when neccesarry
-///
-
 final pages = [
   GetPage(
     name: MyRoutes.landingScreen,
@@ -30,9 +24,8 @@ final pages = [
   )
 ];
 
-/// All pages have their designated names which can be found here
 class MyRoutes {
-  static const landingScreen = '/landing-screen';
-  static const homeScreen = '/home-screen';
-  static const offlineScreen = '/offline-screen';
+  static const landingScreen = '/LandingScreen';
+  static const homeScreen = '/HomeScreen';
+  static const offlineScreen = '/OfflineScreen';
 }
