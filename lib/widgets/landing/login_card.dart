@@ -1,5 +1,4 @@
 import 'package:apexology/constants/text_styles.dart';
-import 'package:apexology/services/auth_service.dart';
 import 'package:apexology/widgets/landing/login_form.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -143,7 +142,7 @@ class LoginCard extends StatelessWidget {
                         Buttons.Google,
                         text: 'Continue with Google',
                         onPressed: () {
-                          AuthService().signInWithGoogle();
+                          controller.signInWithGoogle();
                         },
                       ),
                     ),

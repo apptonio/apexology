@@ -1,5 +1,4 @@
 import 'package:apexology/constants/colors.dart';
-import 'package:apexology/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -90,14 +89,14 @@ class LoginForm extends StatelessWidget {
                 Buttons.Email,
                 text: 'Login with Email',
                 onPressed: () {
-                  AuthService().loginWithEmail();
+                  controller.loginWithEmail();
                 },
               ),
               secondChild: SignInButton(
                 Buttons.Email,
                 text: 'Sign up with Email',
                 onPressed: () {
-                  AuthService().signUpWithEmail();
+                  controller.signUpWithEmail();
                 },
               ),
               crossFadeState: controller.signUp.value

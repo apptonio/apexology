@@ -1,15 +1,12 @@
 import 'package:apexology/constants/localization.dart';
 import 'package:apexology/constants/pages.dart';
-import 'package:apexology/screens/landing/landing_screen.dart';
 import 'package:apexology/services/app_lifecycle_service.dart';
 import 'package:apexology/constants/theme.dart';
-import 'package:apexology/services/auth_service.dart';
 import 'package:apexology/services/connectivity_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
 import 'services/firebase_options.dart';
 
 Future<void> main() async {
@@ -48,7 +45,7 @@ class ApexologyApp extends StatelessWidget {
           locale: Localization.locale,
           fallbackLocale: Localization.fallbackLocale,
           translations: Localization(),
-          initialRoute: AuthService().handleAuthState(),
+          initialRoute: MyRoutes.landingScreen,
         ),
       );
 }
