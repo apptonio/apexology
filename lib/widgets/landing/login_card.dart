@@ -8,6 +8,7 @@ import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:apexology/screens/landing/landing_controller.dart';
+import '../../constants/colors.dart';
 import '../../constants/endpoints.dart';
 
 class LoginCard extends StatelessWidget {
@@ -19,7 +20,7 @@ class LoginCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 32.0.w),
+        padding: EdgeInsets.symmetric(horizontal: 32.w),
         child: Container(
           decoration: BoxDecoration(
             boxShadow: [
@@ -28,7 +29,6 @@ class LoginCard extends StatelessWidget {
                     const Color.fromARGB(255, 197, 188, 188).withOpacity(0.5),
                 blurRadius: 6.0,
                 spreadRadius: 2.0,
-                offset: const Offset(0.0, 0.0),
               )
             ],
             borderRadius: const BorderRadius.only(
@@ -71,7 +71,7 @@ class LoginCard extends StatelessWidget {
                                         style: MyTextStyles.link,
                                         recognizer: TapGestureRecognizer()
                                           ..onTap = () {
-                                            controller.isLogin.value = false;
+                                            controller.signUp.value = true;
                                           },
                                       ),
                                     ],
@@ -87,17 +87,17 @@ class LoginCard extends StatelessWidget {
                                         style: MyTextStyles.link,
                                         recognizer: TapGestureRecognizer()
                                           ..onTap = () {
-                                            controller.isLogin.value = true;
+                                            controller.signUp.value = false;
                                           },
                                       ),
                                     ],
                                   ),
                                 ),
-                                crossFadeState: controller.isLogin.value
-                                    ? CrossFadeState.showFirst
-                                    : CrossFadeState.showSecond,
+                                crossFadeState: controller.signUp.value
+                                    ? CrossFadeState.showSecond
+                                    : CrossFadeState.showFirst,
                                 duration: const Duration(milliseconds: 300)),
-                            crossFadeState: controller.emailIsPressed.value
+                            crossFadeState: controller.continueWithEmail.value
                                 ? CrossFadeState.showSecond
                                 : CrossFadeState.showFirst,
                             duration: const Duration(milliseconds: 300)))),
@@ -108,22 +108,21 @@ class LoginCard extends StatelessWidget {
                               Buttons.Email,
                               text: 'Continue with Email',
                               onPressed: () {
-                                controller.changeEmailButtonState();
+                                controller.continueWithEmail.value = true;
                               },
                             ),
                             secondChild: LoginForm(),
-                            crossFadeState: controller.emailIsPressed.value
+                            crossFadeState: controller.continueWithEmail.value
                                 ? CrossFadeState.showSecond
                                 : CrossFadeState.showFirst,
                             duration: const Duration(milliseconds: 300)))),
                     Row(children: [
                       Expanded(
                         child: Container(
-                            margin:
-                                const EdgeInsets.only(left: 20.0, right: 20.0),
-                            child: const Divider(
-                              color: Colors.black,
-                              height: 36,
+                            margin: EdgeInsets.symmetric(horizontal: 20.w),
+                            child: Divider(
+                              color: MyColors.black,
+                              height: 36.h,
                             )),
                       ),
                       Text(
@@ -132,11 +131,10 @@ class LoginCard extends StatelessWidget {
                       ),
                       Expanded(
                         child: Container(
-                            margin:
-                                const EdgeInsets.symmetric(horizontal: 20.0),
-                            child: const Divider(
-                              color: Colors.black,
-                              height: 36,
+                            margin: EdgeInsets.symmetric(horizontal: 20.w),
+                            child: Divider(
+                              color: MyColors.black,
+                              height: 36.h,
                             )),
                       ),
                     ]),

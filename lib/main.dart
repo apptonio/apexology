@@ -1,5 +1,6 @@
 import 'package:apexology/constants/localization.dart';
 import 'package:apexology/constants/pages.dart';
+import 'package:apexology/screens/landing/landing_screen.dart';
 import 'package:apexology/services/app_lifecycle_service.dart';
 import 'package:apexology/constants/theme.dart';
 import 'package:apexology/services/auth_service.dart';
@@ -47,7 +48,7 @@ class ApexologyApp extends StatelessWidget {
           locale: Localization.locale,
           fallbackLocale: Localization.fallbackLocale,
           translations: Localization(),
-          home: AuthService().handleAuthState(),
+          initialRoute: AuthService().handleAuthState(),
         ),
       );
 }

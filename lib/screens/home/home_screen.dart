@@ -16,9 +16,12 @@ class HomeScreen extends StatelessWidget {
         body: Center(
             child: ListView(
       children: [
-        Text(FirebaseAuth.instance.currentUser?.email as String),
+        Text(FirebaseAuth.instance.currentUser?.email ?? ''),
         ElevatedButton(
-            onPressed: () => AuthService().signOut(),
+            onPressed: () {
+              
+              AuthService().signOut();
+            },
             child: const Text('Sign out'))
       ],
     )));

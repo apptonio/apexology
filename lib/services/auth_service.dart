@@ -1,3 +1,4 @@
+import 'package:apexology/constants/pages.dart';
 import 'package:apexology/screens/home/home_screen.dart';
 import 'package:apexology/screens/landing/landing_screen.dart';
 import 'package:apexology/services/request_status.dart';
@@ -15,16 +16,45 @@ class AuthService extends GetxService {
   final controller = Get.put(LandingController());
   final auth = FirebaseAuth.instance.obs;
 
-  handleAuthState() {
-    return StreamBuilder(
-        stream: auth.value.authStateChanges(),
-        builder: ((context, snapshot) {
-          if (snapshot.hasData) {
-            return const HomeScreen();
-          } else {
-            return const LandingScreen();
-          }
-        }));
+  Stream<User?> get onAuthStateChanged => auth.value.authStateChanges();
+
+  String handleAuthState() {
+    String route = MyRoutes.landingScreen;
+
+    onAuthStateChanged.listen((user) {
+      if (user!.email!.isEmpty) {
+        route = MyRoutes.landingScreen;
+      } else {
+        route = MyRoutes.homeScreen;
+      }
+    });
+    return route;
+
+    // auth.value.authStateChanges().listen((value) {
+    //   if (value?.providerData.isNotEmpty ?? false) {
+    //     print(value);
+    //     route = MyRoutes.homeScreen;
+    //    // Get.offNamed(MyRoutes.homeScreen);
+    //   }
+    //   else{
+    //     route = MyRoutes.landingScreen;
+    //    // Get.offAllNamed(MyRoutes.landingScreen);
+    //   }
+    // });
+    // return route;
+
+    //return StreamBuilder(
+
+    // stream: auth.value.authStateChanges(),
+    // builder: ((context, snapshot) {
+    //   if (snapshot.hasData) {
+    //     controller.continueWithEmail.value = false;
+    //     controller.signUp.value = false;
+    //     return const HomeScreen();
+    //   } else {
+    //     return const LandingScreen();
+    //   }
+    // }));
   }
 
   void loginWithEmail() async {
@@ -39,12 +69,29 @@ class AuthService extends GetxService {
       } on FirebaseAuthException catch (e) {
         if (e.code == 'wrong-password') {
           Get.showSnackbar(const GetSnackBar(
-            message:
-                'The password is invalid or the user does not have a password.',
-            margin: EdgeInsets.all(20.0),
-            duration: Duration(milliseconds: 3000),
-            borderRadius: 8.0
-          ));
+              message:
+                  'The password is invalid or the user does not have a password.',
+              margin: EdgeInsets.all(20.0),
+              duration: Duration(milliseconds: 3000),
+              borderRadius: 8.0));
+        } else if (e.code == 'user-not-found') {
+          Get.showSnackbar(const GetSnackBar(
+              message: 'An account with this email does not exist.',
+              margin: EdgeInsets.all(20.0),
+              duration: Duration(milliseconds: 3000),
+              borderRadius: 8.0));
+        } else if (e.code == 'user-disabled') {
+          Get.showSnackbar(const GetSnackBar(
+              message: 'The email for this account has been disabled.',
+              margin: EdgeInsets.all(20.0),
+              duration: Duration(milliseconds: 3000),
+              borderRadius: 8.0));
+        } else if (e.code == 'invalid-email') {
+          Get.showSnackbar(const GetSnackBar(
+              message: 'Please enter a valid email address.',
+              margin: EdgeInsets.all(20.0),
+              duration: Duration(milliseconds: 3000),
+              borderRadius: 8.0));
         }
       } on PlatformException catch (err) {
         var message = 'An error occurred, please check your credentials.';
@@ -52,19 +99,17 @@ class AuthService extends GetxService {
           message = err.message!;
         }
         Get.showSnackbar(GetSnackBar(
-          message: message,
-          margin: const EdgeInsets.all(20.0),
-          duration: const Duration(milliseconds: 3000),
-          borderRadius: 8.0
-        ));
+            message: message,
+            margin: const EdgeInsets.all(20.0),
+            duration: const Duration(milliseconds: 3000),
+            borderRadius: 8.0));
       }
     } else {
       Get.showSnackbar(const GetSnackBar(
-        message: 'Please provide a better email & password.',
-        margin: EdgeInsets.all(20.0),
-        duration: Duration(milliseconds: 3000),
-        borderRadius: 8.0
-      ));
+          message: 'Please provide a better email & password.',
+          margin: EdgeInsets.all(20.0),
+          duration: Duration(milliseconds: 3000),
+          borderRadius: 8.0));
     }
   }
 
@@ -80,18 +125,22 @@ class AuthService extends GetxService {
       } on FirebaseAuthException catch (err) {
         if (err.code == 'weak-password') {
           Get.showSnackbar(const GetSnackBar(
-            message: 'Please provide a stronger password',
-            margin: EdgeInsets.all(20.0),
-            duration: Duration(milliseconds: 3000),
-            borderRadius: 8.0
-          ));
+              message: 'Please provide a stronger password',
+              margin: EdgeInsets.all(20.0),
+              duration: Duration(milliseconds: 3000),
+              borderRadius: 8.0));
         } else if (err.code == 'email-already-in-use') {
           Get.showSnackbar(const GetSnackBar(
-            message: 'An account with this email already exists.',
-            margin: EdgeInsets.all(20.0),
-            duration: Duration(milliseconds: 3000),
-            borderRadius: 8.0
-          ));
+              message: 'An account with this email already exists.',
+              margin: EdgeInsets.all(20.0),
+              duration: Duration(milliseconds: 3000),
+              borderRadius: 8.0));
+        } else if (err.code == 'invalid-email') {
+          Get.showSnackbar(const GetSnackBar(
+              message: 'Please enter a valid email address.',
+              margin: EdgeInsets.all(20.0),
+              duration: Duration(milliseconds: 3000),
+              borderRadius: 8.0));
         }
       } on PlatformException catch (e) {
         var message = 'An error occurred, please check your credentials.';

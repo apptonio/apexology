@@ -51,29 +51,29 @@ class LandingScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         const Spacer(),
+                        const Spacer(),
                         LoginCard(),
                         const Spacer(),
-                        Align(
-                          alignment: Alignment.bottomCenter,
-                          child: RichText(
-                            text: TextSpan(
-                              text: 'Image contribution to ',
-                              style: MyTextStyles.bodySmallWhite,
-                              children: [
-                                TextSpan(
-                                  text: 'AlphaSystem',
-                                  style: MyTextStyles.linkSmallWhite,
-                                  recognizer: TapGestureRecognizer()
-                                    ..onTap = () async {
-                                      await launchUrlString(
-                                          MyEndpoints.landingImagesContribution,
-                                          mode: LaunchMode.inAppWebView);
-                                    },
-                                ),
-                              ],
-                            ),
+                        const Spacer(),
+                        RichText(
+                          text: TextSpan(
+                            text: 'Image contribution to ',
+                            style: MyTextStyles.bodySmallWhite,
+                            children: [
+                              TextSpan(
+                                text: 'AlphaSystem',
+                                style: MyTextStyles.linkSmallWhite,
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () async {
+                                    await launchUrlString(
+                                        MyEndpoints.landingImagesContribution,
+                                        mode: LaunchMode.inAppWebView);
+                                  },
+                              ),
+                            ],
                           ),
-                        )
+                        ),
+                        const Spacer()
                       ]),
                 ))
           ],

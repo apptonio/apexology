@@ -6,25 +6,14 @@ import 'package:get/get.dart';
 
 import '../../services/request_status.dart';
 
-///
-/// This is a controller in which we write logic concerning [LandingScreen]
-/// The controller uses a [StateMixin]
-/// We pass a variable type to the mixin and then get access to the `change` method
-/// We can set different states with it and then render proper Widget depending on the state
-///
-
 class LandingController extends GetxController {
-  var emailIsPressed = false.obs;
-  var isLogin = true.obs;
 
+  var continueWithEmail = false.obs;
+  var signUp = false.obs;
   final formKey = GlobalKey<FormBuilderState>().obs;
-
   final emailFocusNode = FocusNode().obs;
   final passwordFocusNode = FocusNode().obs;
-
   final requestStatus = RequestStatus.LOADING.obs;
-
-  
 
   List<String> landingCarouselList = [
     MyAssets.wraith,
@@ -39,10 +28,6 @@ class LandingController extends GetxController {
   @override
   Future<void> onInit() async {
     super.onInit();
-  }
-
-  void changeEmailButtonState() {
-    emailIsPressed.value = true;
   }
 
   @override

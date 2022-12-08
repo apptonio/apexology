@@ -2,6 +2,7 @@ import 'package:apexology/constants/colors.dart';
 import 'package:apexology/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
@@ -19,7 +20,7 @@ class LoginForm extends StatelessWidget {
         key: controller.formKey.value,
         child: SingleChildScrollView(
             child: Column(children: [
-          const SizedBox(height: 10),
+          SizedBox(height: 5.h),
           FormBuilderTextField(
             focusNode: controller.emailFocusNode.value,
             onTap: () {
@@ -32,6 +33,7 @@ class LoginForm extends StatelessWidget {
             name: 'email',
             decoration: InputDecoration(
               labelText: 'Email',
+              errorStyle: const TextStyle(color: MyColors.red),
               labelStyle: TextStyle(
                   color: controller.emailFocusNode.value.hasFocus
                       ? MyColors.blue
@@ -50,7 +52,7 @@ class LoginForm extends StatelessWidget {
             ]),
             autovalidateMode: AutovalidateMode.onUserInteraction,
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: 20.h),
           FormBuilderTextField(
             focusNode: controller.passwordFocusNode.value,
             onTap: () {
@@ -75,10 +77,14 @@ class LoginForm extends StatelessWidget {
                 ),
               ),
             ),
-            validator: FormBuilderValidators.required(),
+            validator: FormBuilderValidators.compose([
+              FormBuilderValidators.required(),
+              FormBuilderValidators.match(
+                  r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
+            ]),
             autovalidateMode: AutovalidateMode.onUserInteraction,
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: 20.h),
           Obx(() => AnimatedCrossFade(
               firstChild: SignInButton(
                 Buttons.Email,
@@ -94,9 +100,9 @@ class LoginForm extends StatelessWidget {
                   AuthService().signUpWithEmail();
                 },
               ),
-              crossFadeState: controller.isLogin.value
-                  ? CrossFadeState.showFirst
-                  : CrossFadeState.showSecond,
+              crossFadeState: controller.signUp.value
+                  ? CrossFadeState.showSecond
+                  : CrossFadeState.showFirst,
               duration: const Duration(milliseconds: 300)))
         ]))));
   }
