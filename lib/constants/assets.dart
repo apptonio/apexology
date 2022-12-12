@@ -17,4 +17,6 @@ class MyAssets {
   static const bangalore = '${landingBaseUrl}bangalore.jpeg?alt=media&token=b8df98e0-73e1-4c60-bb7a-2edff1d3238e';
   static const lifeline = '${landingBaseUrl}lifeline.jpeg?alt=media&token=bdb7f94f-0a78-4b85-a70e-675087acca44';
   static const gibraltar = '${landingBaseUrl}gibraltar.jpeg?alt=media&token=9420c979-fb03-4ac6-987d-0736a9edf071';
+
+  static const noInternet = 'assets/images/noInternet.gif';
 }

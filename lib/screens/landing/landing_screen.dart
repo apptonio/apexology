@@ -3,6 +3,7 @@ import 'package:apexology/constants/endpoints.dart';
 import 'package:apexology/constants/text_styles.dart';
 import 'package:apexology/screens/landing/landing_controller.dart';
 import 'package:apexology/widgets/landing/login_card.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,10 @@ class LandingScreen extends StatelessWidget {
               items: controller.landingCarouselList
                   .map((item) => Center(
                           child: FadeInImage(
-                        image: NetworkImage(item),
+                        imageErrorBuilder: (context, error, stackTrace) {
+                          return Image.asset(MyAssets.landingPlaceholder);
+                        },
+                        image: CachedNetworkImageProvider(item),
                         placeholder:
                             const AssetImage(MyAssets.landingPlaceholder),
                         fit: BoxFit.cover,
