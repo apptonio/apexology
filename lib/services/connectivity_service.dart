@@ -9,6 +9,7 @@ class ConnectivityService {
     Connectivity().onConnectivityChanged.listen((result) {
       if (result == ConnectivityResult.none) {
         isConnected = false;
+        showSnackbar();
       } else if (result == ConnectivityResult.wifi ||
           result == ConnectivityResult.mobile) {
         isConnected = true;
@@ -17,12 +18,12 @@ class ConnectivityService {
   }
 
   static void showSnackbar() {
-    if(isConnected == false){
-    Get.showSnackbar(const GetSnackBar(
-        message: 'There is no internet connection',
-        margin: EdgeInsets.all(20.0),
-        duration: Duration(milliseconds: 3000),
-        borderRadius: 8.0));
+    if (isConnected == false) {
+      Get.showSnackbar(const GetSnackBar(
+          message: 'There is no internet connection',
+          margin: EdgeInsets.all(20.0),
+          duration: Duration(milliseconds: 3000),
+          borderRadius: 8.0));
     }
   }
 }
