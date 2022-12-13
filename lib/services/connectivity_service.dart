@@ -1,27 +1,28 @@
-import 'package:apexology/constants/pages.dart';
-import 'package:apexology/screens/offline/offline_binding.dart';
-import 'package:apexology/screens/offline/offline_screen.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ConnectivityService extends GetxService {
-  final currentRoute = Get.currentRoute;
-  bool isConnected = false;
+class ConnectivityService {
+  static bool isConnected = false;
 
-  late final connectivityListener =
-      Connectivity().onConnectivityChanged.listen((result) {
-    if (result == ConnectivityResult.none) {
-      isConnected = false;
-      Get.to(
-        const OfflineScreen(),
-        binding: OfflineBinding(),
-      );
-    } else if (result == ConnectivityResult.wifi ||
-        result == ConnectivityResult.mobile) {
-      isConnected = true;
-      if (Get.currentRoute == MyRoutes.offlineScreen) {
-        Get.back();
+  static void connectivityListen() {
+    Connectivity().onConnectivityChanged.listen((result) {
+      if (result == ConnectivityResult.none) {
+        isConnected = false;
+      } else if (result == ConnectivityResult.wifi ||
+          result == ConnectivityResult.mobile) {
+        isConnected = true;
       }
+    });
+  }
+
+  static void showSnackbar() {
+    if(isConnected == false){
+    Get.showSnackbar(const GetSnackBar(
+        message: 'There is no internet connection',
+        margin: EdgeInsets.all(20.0),
+        duration: Duration(milliseconds: 3000),
+        borderRadius: 8.0));
     }
-  });
+  }
 }

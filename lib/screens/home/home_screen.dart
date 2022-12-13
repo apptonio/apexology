@@ -1,4 +1,5 @@
 import 'package:apexology/screens/landing/landing_controller.dart';
+import 'package:apexology/services/connectivity_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,7 +22,10 @@ class HomeScreen extends StatelessWidget {
         Text(FirebaseAuth.instance.currentUser?.email ?? ''),
         ElevatedButton(
             onPressed: () => landingController.signOut(),
-            child: const Text('Sign out'))
+            child: const Text('Sign out')),
+        ElevatedButton(
+            onPressed: () => print(ConnectivityService.isConnected),
+            child: const Text('Check connectivity'))
       ],
     )));
   }

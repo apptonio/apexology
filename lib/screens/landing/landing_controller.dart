@@ -64,7 +64,6 @@ class LandingController extends GetxController {
       }
     });
 
-
       await downloadImagesToCache(listOfImageUrls: landingCarouselList);
     
 

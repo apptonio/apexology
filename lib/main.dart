@@ -16,9 +16,9 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  Get.put(ConnectivityService());
-  ConnectivityService().connectivityListener;
-  runApp(ApexologyApp());
+
+  ConnectivityService.connectivityListen();
+  runApp(const ApexologyApp());
 }
 
 class InitialBinding extends Bindings {
@@ -29,9 +29,7 @@ class InitialBinding extends Bindings {
 }
 
 class ApexologyApp extends StatelessWidget {
-  ApexologyApp({super.key});
-
-  final connect = Get.find<ConnectivityService>();
+  const ApexologyApp({super.key});
 
   @override
   Widget build(BuildContext context) => ScreenUtilInit(

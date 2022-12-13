@@ -3,8 +3,12 @@ import 'dart:convert';
 import 'package:apexology/models/bundles/bundles.dart';
 import 'package:apexology/models/maps/maps.dart';
 import 'package:apexology/models/stats/stats.dart';
+import 'package:apexology/services/connectivity_service.dart';
 import 'package:dio/dio.dart';
 import 'package:apexology/constants/endpoints.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart' as a;
+
 
 import '../models/news/news.dart';
 
@@ -31,10 +35,20 @@ class HTTP {
     );
   }
 
-  Future<List<News>> getNews() async {
+  Future<dynamic> getNews() async {
+
+    if(!ConnectivityService.isConnected){
+      return a.Get.showSnackbar(const a.GetSnackBar(
+              message: 'There is no internet connection',
+              margin: EdgeInsets.all(20.0),
+              duration: Duration(milliseconds: 3000),
+              borderRadius: 8.0));
+    }
+
     Response response = await client.get(MyEndpoints.news);
     var decodedString = json.decode(response.data);
     return (decodedString as List).map((data) => News.fromJson(data)).toList();
+
   }
 
   Future<Stats> getStats() async {
