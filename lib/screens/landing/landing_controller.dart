@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -48,7 +49,6 @@ class LandingController extends GetxController {
           await DefaultCacheManager().downloadFile(item);
           print(item);
         } catch (e) {
-          /// if file url is incorrect or corrupted then we move on to next url
           print('Error in downloading image $e');
         }
       }
@@ -64,7 +64,14 @@ class LandingController extends GetxController {
       }
     });
 
+    
+    initialization();
+  }
+
+  void initialization() async {
+
     await downloadImagesToCache(listOfImageUrls: landingCarouselList);
+    FlutterNativeSplash.remove();
   }
 
   @override

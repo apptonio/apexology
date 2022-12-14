@@ -7,6 +7,7 @@ class ConnectivityService {
 
   static void connectivityListen() {
     Connectivity().onConnectivityChanged.listen((result) {
+
       if (result == ConnectivityResult.none)  {
         print('no connecton');
         isConnected = false;
@@ -19,6 +20,7 @@ class ConnectivityService {
         if (isDisconnected) {
           MySnackbars.showSuccessSnackbar(
               message: "Successfully reconnected to the internet.");
+          isDisconnected = false;
         }
       }
     });

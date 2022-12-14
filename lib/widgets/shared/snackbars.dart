@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 class MySnackbars {
   static void showSuccessSnackbar({
     required String message,
-    Color backgroundColor = MyColors.black,
+    Color backgroundColor = MyColors.grey,
     IconData icon = Icons.check,
   }) =>
       Get.rawSnackbar(
@@ -27,7 +27,7 @@ class MySnackbars {
 
   static void showErrorSnackbar({
     required String message,
-    Color backgroundColor = MyColors.black,
+    Color backgroundColor = MyColors.grey,
     IconData icon = Icons.close,
   }) =>
       Get.rawSnackbar(
