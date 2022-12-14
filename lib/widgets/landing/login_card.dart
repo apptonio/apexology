@@ -1,5 +1,7 @@
 import 'package:apexology/constants/text_styles.dart';
+import 'package:apexology/services/connectivity_service.dart';
 import 'package:apexology/widgets/landing/login_form.dart';
+import 'package:apexology/widgets/shared/snackbars.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -142,7 +144,11 @@ class LoginCard extends StatelessWidget {
                         Buttons.Google,
                         text: 'Continue with Google',
                         onPressed: () {
-                          controller.signInWithGoogle();
+                          if(ConnectivityService.isConnected){
+                            controller.signInWithGoogle();
+                          }else{
+                            MySnackbars.showErrorSnackbar(message: 'Please connect to the internet.');
+                          }
                         },
                       ),
                     ),

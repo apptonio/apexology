@@ -1,4 +1,8 @@
+import 'dart:math';
+
 import 'package:apexology/constants/colors.dart';
+import 'package:apexology/services/connectivity_service.dart';
+import 'package:apexology/widgets/shared/snackbars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -89,14 +93,24 @@ class LoginForm extends StatelessWidget {
                 Buttons.Email,
                 text: 'Login with Email',
                 onPressed: () {
-                  controller.loginWithEmail();
+                  if (ConnectivityService.isConnected) {
+                    controller.loginWithEmail();
+                  } else {
+                    MySnackbars.showErrorSnackbar(
+                        message: 'Please connect to the internet.');
+                  }
                 },
               ),
               secondChild: SignInButton(
                 Buttons.Email,
                 text: 'Sign up with Email',
                 onPressed: () {
-                  controller.signUpWithEmail();
+                  if (ConnectivityService.isConnected) {
+                    controller.signUpWithEmail();
+                  } else {
+                    MySnackbars.showErrorSnackbar(
+                        message: 'Please connect to the internet.');
+                  }
                 },
               ),
               crossFadeState: controller.signUp.value
