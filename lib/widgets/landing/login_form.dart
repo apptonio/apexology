@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:apexology/constants/colors.dart';
 import 'package:apexology/services/connectivity_service.dart';
 import 'package:apexology/widgets/shared/snackbars.dart';

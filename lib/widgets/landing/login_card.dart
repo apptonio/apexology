@@ -144,10 +144,11 @@ class LoginCard extends StatelessWidget {
                         Buttons.Google,
                         text: 'Continue with Google',
                         onPressed: () {
-                          if(ConnectivityService.isConnected){
+                          if (ConnectivityService.isConnected) {
                             controller.signInWithGoogle();
-                          }else{
-                            MySnackbars.showErrorSnackbar(message: 'Please connect to the internet.');
+                          } else {
+                            MySnackbars.showErrorSnackbar(
+                                message: 'Please connect to the internet.');
                           }
                         },
                       ),
@@ -164,9 +165,15 @@ class LoginCard extends StatelessWidget {
                               style: MyTextStyles.linkSmall,
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () async {
-                                  await launchUrlString(
-                                      MyEndpoints.privacyPolicy,
-                                      mode: LaunchMode.inAppWebView);
+                                  if (ConnectivityService.isConnected) {
+                                    await launchUrlString(
+                                        MyEndpoints.privacyPolicy,
+                                        mode: LaunchMode.inAppWebView);
+                                  } else {
+                                    MySnackbars.showErrorSnackbar(
+                                        message:
+                                            'Please connect to the internet');
+                                  }
                                 },
                             ),
                           ],

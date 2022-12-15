@@ -2,7 +2,9 @@ import 'package:apexology/constants/assets.dart';
 import 'package:apexology/constants/endpoints.dart';
 import 'package:apexology/constants/text_styles.dart';
 import 'package:apexology/screens/landing/landing_controller.dart';
+import 'package:apexology/services/connectivity_service.dart';
 import 'package:apexology/widgets/landing/login_card.dart';
+import 'package:apexology/widgets/shared/snackbars.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/gestures.dart';
@@ -23,27 +25,33 @@ class LandingScreen extends StatelessWidget {
         body: Center(
             child: Stack(
           children: [
-            CarouselSlider(
-              options: CarouselOptions(
-                  height: height,
-                  viewportFraction: 1.0,
-                  enlargeCenterPage: false,
-                  autoPlay: true,
-                  autoPlayInterval: const Duration(milliseconds: 5000)),
-              items: controller.landingCarouselList
-                  .map((item) => Center(
-                          child: FadeInImage(
-                        imageErrorBuilder: (context, error, stackTrace) {
-                          return Image.asset(MyAssets.landingPlaceholder);
-                        },
-                        image: CachedNetworkImageProvider(item),
-                        placeholder:
-                            const AssetImage(MyAssets.landingPlaceholder),
-                        fit: BoxFit.cover,
+            ConnectivityService.isConnected
+                ? CarouselSlider(
+                    options: CarouselOptions(
                         height: height,
-                      )))
-                  .toList(),
-            ),
+                        viewportFraction: 1.0,
+                        enlargeCenterPage: false,
+                        autoPlay: true,
+                        autoPlayInterval: const Duration(milliseconds: 5000)),
+                    items: controller.landingCarouselList
+                        .map((item) => Center(
+                                child: FadeInImage(
+                              imageErrorBuilder: (context, error, stackTrace) {
+                                return Image.asset(MyAssets.landingPlaceholder);
+                              },
+                              image: CachedNetworkImageProvider(item),
+                              placeholder:
+                                  const AssetImage(MyAssets.landingPlaceholder),
+                              fit: BoxFit.cover,
+                              height: height,
+                            )))
+                        .toList(),
+                  )
+                : Image.asset(
+                    MyAssets.landingPlaceholder,
+                    fit: BoxFit.cover,
+                    height: height,
+                  ),
             Container(
                 decoration: const BoxDecoration(
                     gradient: LinearGradient(
@@ -70,9 +78,15 @@ class LandingScreen extends StatelessWidget {
                                 style: MyTextStyles.linkSmallWhite,
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () async {
-                                    await launchUrlString(
-                                        MyEndpoints.landingImagesContribution,
-                                        mode: LaunchMode.inAppWebView);
+                                    if (ConnectivityService.isConnected) {
+                                      await launchUrlString(
+                                          MyEndpoints.landingImagesContribution,
+                                          mode: LaunchMode.inAppWebView);
+                                    } else {
+                                      MySnackbars.showErrorSnackbar(
+                                          message:
+                                              'Please connect to the internet');
+                                    }
                                   },
                               ),
                             ],

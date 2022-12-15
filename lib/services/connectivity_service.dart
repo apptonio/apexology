@@ -9,7 +9,6 @@ class ConnectivityService {
     Connectivity().onConnectivityChanged.listen((result) {
 
       if (result == ConnectivityResult.none)  {
-        print('no connecton');
         isConnected = false;
         isDisconnected = true;
         MySnackbars.showErrorSnackbar(

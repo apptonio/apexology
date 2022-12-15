@@ -48,13 +48,12 @@ class LandingController extends GetxController {
         try {
           await DefaultCacheManager().downloadFile(item);
           print(item);
-        } catch (e) {
-          print('Error in downloading image $e');
-        }
+        } catch (e) {}
       }
-    }).timeout(const Duration(seconds: 20));
+    });
   }
 
+//.timeout(const Duration(seconds: 20))
   @override
   Future<void> onInit() async {
     super.onInit();
@@ -64,13 +63,14 @@ class LandingController extends GetxController {
       }
     });
 
-    
     initialization();
   }
 
   void initialization() async {
+    if (ConnectivityService.isConnected) {
+      await downloadImagesToCache(listOfImageUrls: landingCarouselList);
+    }
 
-    await downloadImagesToCache(listOfImageUrls: landingCarouselList);
     FlutterNativeSplash.remove();
   }
 

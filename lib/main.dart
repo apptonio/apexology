@@ -20,7 +20,6 @@ Future<void> main() async {
   );
 
   ConnectivityService.connectivityListen();
-  
   runApp(const ApexologyApp());
 }
 

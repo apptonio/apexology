@@ -204,5 +204,6 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/fonts/Roboto/
     - assets/icons/
     - assets/images/
