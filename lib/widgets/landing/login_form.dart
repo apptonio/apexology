@@ -33,7 +33,7 @@ class LoginForm extends StatelessWidget {
             },
             name: 'email',
             decoration: InputDecoration(
-              labelText: 'Email',
+              labelText: 'email'.tr,
               errorStyle: const TextStyle(color: MyColors.red),
               labelStyle: TextStyle(
                   color: controller.emailFocusNode.value.hasFocus
@@ -65,7 +65,7 @@ class LoginForm extends StatelessWidget {
             },
             name: 'password',
             decoration: InputDecoration(
-              labelText: 'Password',
+              labelText: 'password'.tr,
               labelStyle: TextStyle(
                   color: controller.passwordFocusNode.value.hasFocus
                       ? MyColors.blue
@@ -89,25 +89,25 @@ class LoginForm extends StatelessWidget {
           Obx(() => AnimatedCrossFade(
               firstChild: SignInButton(
                 Buttons.Email,
-                text: 'Login with Email',
+                text: 'loginWithEmail'.tr,
                 onPressed: () {
                   if (ConnectivityService.isConnected) {
                     controller.loginWithEmail();
                   } else {
                     MySnackbars.showErrorSnackbar(
-                        message: 'Please connect to the internet.');
+                        message: 'noInternet'.tr);
                   }
                 },
               ),
               secondChild: SignInButton(
                 Buttons.Email,
-                text: 'Sign up with Email',
+                text: 'signupWithEmail'.tr,
                 onPressed: () {
                   if (ConnectivityService.isConnected) {
                     controller.signUpWithEmail();
                   } else {
                     MySnackbars.showErrorSnackbar(
-                        message: 'Please connect to the internet.');
+                        message: 'noInternet'.tr);
                   }
                 },
               ),

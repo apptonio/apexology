@@ -70,11 +70,11 @@ class LandingScreen extends StatelessWidget {
                         const Spacer(),
                         RichText(
                           text: TextSpan(
-                            text: 'Image contribution to ',
+                            text: 'imageContribution'.tr,
                             style: MyTextStyles.bodySmallWhite,
                             children: [
                               TextSpan(
-                                text: 'AlphaSystem',
+                                text: 'imageContribution2'.tr,
                                 style: MyTextStyles.linkSmallWhite,
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () async {
@@ -84,8 +84,7 @@ class LandingScreen extends StatelessWidget {
                                           mode: LaunchMode.inAppWebView);
                                     } else {
                                       MySnackbars.showErrorSnackbar(
-                                          message:
-                                              'Please connect to the internet');
+                                          message: 'noInternet'.tr);
                                     }
                                   },
                               ),

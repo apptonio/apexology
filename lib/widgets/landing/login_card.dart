@@ -36,8 +36,7 @@ class LoginCard extends StatelessWidget {
                 topLeft: Radius.circular(16),
                 topRight: Radius.circular(16),
                 bottomLeft: Radius.circular(16),
-                bottomRight: Radius.circular(16) // changes position of shadow
-                ),
+                bottomRight: Radius.circular(16)),
           ),
           child: Card(
             shape: RoundedRectangleBorder(
@@ -52,23 +51,23 @@ class LoginCard extends StatelessWidget {
                   children: [
                     Center(
                       child: Text(
-                        'Welcome to Apexology',
+                        'welcomeToApexology'.tr,
                         style: MyTextStyles.header,
                       ),
                     ),
                     SizedBox(height: 10.h),
                     Center(
                         child: Obx(() => AnimatedCrossFade(
-                            firstChild: Text('Choose one of the options below',
+                            firstChild: Text('chooseOptions'.tr,
                                 style: MyTextStyles.body),
                             secondChild: AnimatedCrossFade(
                                 firstChild: RichText(
                                   text: TextSpan(
-                                    text: "Don't have an account? ",
+                                    text: 'noAccount'.tr,
                                     style: MyTextStyles.body,
                                     children: [
                                       TextSpan(
-                                        text: 'Sign up',
+                                        text: 'signUp'.tr,
                                         style: MyTextStyles.link,
                                         recognizer: TapGestureRecognizer()
                                           ..onTap = () {
@@ -80,11 +79,11 @@ class LoginCard extends StatelessWidget {
                                 ),
                                 secondChild: RichText(
                                   text: TextSpan(
-                                    text: "Already have an account? ",
+                                    text: 'yesAccount'.tr,
                                     style: MyTextStyles.body,
                                     children: [
                                       TextSpan(
-                                        text: 'Log in',
+                                        text: 'logIn'.tr,
                                         style: MyTextStyles.link,
                                         recognizer: TapGestureRecognizer()
                                           ..onTap = () {
@@ -107,7 +106,7 @@ class LoginCard extends StatelessWidget {
                         child: Obx(() => AnimatedCrossFade(
                             firstChild: SignInButton(
                               Buttons.Email,
-                              text: 'Continue with Email',
+                              text: 'continueWithEmail'.tr,
                               onPressed: () {
                                 controller.continueWithEmail.value = true;
                               },
@@ -142,13 +141,13 @@ class LoginCard extends StatelessWidget {
                     Center(
                       child: SignInButton(
                         Buttons.Google,
-                        text: 'Continue with Google',
+                        text: 'continueWithGoogle'.tr,
                         onPressed: () {
                           if (ConnectivityService.isConnected) {
                             controller.signInWithGoogle();
                           } else {
                             MySnackbars.showErrorSnackbar(
-                                message: 'Please connect to the internet.');
+                                message: 'noInternet'.tr);
                           }
                         },
                       ),
@@ -157,11 +156,11 @@ class LoginCard extends StatelessWidget {
                     Center(
                       child: RichText(
                         text: TextSpan(
-                          text: 'By signing up you accept our ',
+                          text: 'privacyPolicy1'.tr,
                           style: MyTextStyles.bodySmall,
                           children: [
                             TextSpan(
-                              text: 'privacy policy',
+                              text: 'privacyPolicy2'.tr,
                               style: MyTextStyles.linkSmall,
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () async {
@@ -171,8 +170,7 @@ class LoginCard extends StatelessWidget {
                                         mode: LaunchMode.inAppWebView);
                                   } else {
                                     MySnackbars.showErrorSnackbar(
-                                        message:
-                                            'Please connect to the internet');
+                                        message: 'noInternet'.tr);
                                   }
                                 },
                             ),

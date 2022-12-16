@@ -12,7 +12,6 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-
 import '../../services/request_status.dart';
 
 class LandingController extends GetxController {
@@ -92,29 +91,23 @@ class LandingController extends GetxController {
             password: formKey.value.currentState?.fields['password']?.value);
       } on FirebaseAuthException catch (e) {
         if (e.code == 'wrong-password') {
-          MySnackbars.showErrorSnackbar(
-              message:
-                  'The password is invalid or the user does not have a password.');
+          MySnackbars.showErrorSnackbar(message: 'invalidPassword'.tr);
         } else if (e.code == 'user-not-found') {
-          MySnackbars.showErrorSnackbar(
-              message: 'An account with this email does not exist.');
+          MySnackbars.showErrorSnackbar(message: 'userNotFound'.tr);
         } else if (e.code == 'user-disabled') {
-          MySnackbars.showErrorSnackbar(
-              message: 'The email for this account has been disabled.');
+          MySnackbars.showErrorSnackbar(message: 'disabledEmail'.tr);
         } else if (e.code == 'invalid-email') {
-          MySnackbars.showErrorSnackbar(
-              message: 'Please enter a valid email address.');
+          MySnackbars.showErrorSnackbar(message: 'invalidEmail'.tr);
         }
       } on PlatformException catch (err) {
-        var message = 'An error occurred, please check your credentials.';
+        var message = 'formError'.tr;
         if (err.message != null) {
           message = err.message!;
         }
         MySnackbars.showErrorSnackbar(message: message);
       }
     } else {
-      MySnackbars.showErrorSnackbar(
-          message: 'Please provide a better email & password.');
+      MySnackbars.showErrorSnackbar(message: 'betterCredentials'.tr);
     }
   }
 
@@ -127,25 +120,21 @@ class LandingController extends GetxController {
             password: formKey.value.currentState?.fields['password']?.value);
       } on FirebaseAuthException catch (err) {
         if (err.code == 'weak-password') {
-          MySnackbars.showErrorSnackbar(
-              message: 'Please provide a stronger password');
+          MySnackbars.showErrorSnackbar(message: 'weakPassword'.tr);
         } else if (err.code == 'email-already-in-use') {
-          MySnackbars.showErrorSnackbar(
-              message: 'An account with this email already exists.');
+          MySnackbars.showErrorSnackbar(message: 'emailAlreadyInUse'.tr);
         } else if (err.code == 'invalid-email') {
-          MySnackbars.showErrorSnackbar(
-              message: 'Please enter a valid email address.');
+          MySnackbars.showErrorSnackbar(message: 'invalidEmail'.tr);
         }
       } on PlatformException catch (e) {
-        var message = 'An error occurred, please check your credentials.';
+        var message = 'formError'.tr;
         if (e.message != null) {
           message = e.message!;
         }
         MySnackbars.showErrorSnackbar(message: message);
       }
     } else {
-      MySnackbars.showErrorSnackbar(
-          message: 'Please provide a better email & password.');
+      MySnackbars.showErrorSnackbar(message: 'betterCredentials'.tr);
     }
   }
 

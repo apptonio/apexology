@@ -1,5 +1,6 @@
 import 'package:apexology/widgets/shared/snackbars.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
 
 class ConnectivityService {
   static bool isConnected = false;
@@ -12,13 +13,13 @@ class ConnectivityService {
         isConnected = false;
         isDisconnected = true;
         MySnackbars.showErrorSnackbar(
-            message: "Please connect to the internet.");
+            message: 'noInternet'.tr);
       } else if (result == ConnectivityResult.wifi ||
           result == ConnectivityResult.mobile) {
         isConnected = true;
         if (isDisconnected) {
           MySnackbars.showSuccessSnackbar(
-              message: "Successfully reconnected to the internet.");
+              message: 'reconnected'.tr);
           isDisconnected = false;
         }
       }
