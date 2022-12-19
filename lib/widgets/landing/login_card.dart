@@ -2,6 +2,7 @@ import 'package:apexology/constants/text_styles.dart';
 import 'package:apexology/services/connectivity_service.dart';
 import 'package:apexology/widgets/landing/login_form.dart';
 import 'package:apexology/widgets/shared/snackbars.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -143,7 +144,9 @@ class LoginCard extends StatelessWidget {
                         Buttons.Google,
                         text: 'continueWithGoogle'.tr,
                         onPressed: () {
-                          if (ConnectivityService.isConnected) {
+                          if ( ConnectivityService.connectionState == ConnectivityResult.wifi ||
+                    ConnectivityService.connectionState ==
+                        ConnectivityResult.mobile) {
                             controller.signInWithGoogle();
                           } else {
                             MySnackbars.showErrorSnackbar(
@@ -164,7 +167,9 @@ class LoginCard extends StatelessWidget {
                               style: MyTextStyles.linkSmall,
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () async {
-                                  if (ConnectivityService.isConnected) {
+                                  if ( ConnectivityService.connectionState == ConnectivityResult.wifi ||
+                    ConnectivityService.connectionState ==
+                        ConnectivityResult.mobile) {
                                     await launchUrlString(
                                         MyEndpoints.privacyPolicy,
                                         mode: LaunchMode.inAppWebView);

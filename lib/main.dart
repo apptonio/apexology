@@ -5,14 +5,13 @@ import 'package:apexology/constants/theme.dart';
 import 'package:apexology/services/connectivity_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'services/firebase_options.dart';
 
 Future<void> main() async {
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  
+  WidgetsFlutterBinding.ensureInitialized();
 
   /// Initialize Firebase
   await Firebase.initializeApp(
@@ -26,7 +25,9 @@ Future<void> main() async {
 class InitialBinding extends Bindings {
   @override
   void dependencies() {
-    Get.put(AppLifecycleService());
+    Get
+    ..put(AppLifecycleService())
+    ..put(ConnectivityService());
   }
 }
 
@@ -45,7 +46,7 @@ class ApexologyApp extends StatelessWidget {
           locale: Localization.locale,
           fallbackLocale: Localization.fallbackLocale,
           translations: Localization(),
-          initialRoute: MyRoutes.landingScreen,
+          initialRoute: MyRoutes.splashScreen,
         ),
       );
 }

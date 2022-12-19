@@ -1,6 +1,7 @@
 import 'package:apexology/constants/colors.dart';
 import 'package:apexology/services/connectivity_service.dart';
 import 'package:apexology/widgets/shared/snackbars.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -91,7 +92,9 @@ class LoginForm extends StatelessWidget {
                 Buttons.Email,
                 text: 'loginWithEmail'.tr,
                 onPressed: () {
-                  if (ConnectivityService.isConnected) {
+                  if ( ConnectivityService.connectionState == ConnectivityResult.wifi ||
+                    ConnectivityService.connectionState ==
+                        ConnectivityResult.mobile) {
                     controller.loginWithEmail();
                   } else {
                     MySnackbars.showErrorSnackbar(
@@ -103,7 +106,9 @@ class LoginForm extends StatelessWidget {
                 Buttons.Email,
                 text: 'signupWithEmail'.tr,
                 onPressed: () {
-                  if (ConnectivityService.isConnected) {
+                  if ( ConnectivityService.connectionState == ConnectivityResult.wifi ||
+                    ConnectivityService.connectionState ==
+                        ConnectivityResult.mobile) {
                     controller.signUpWithEmail();
                   } else {
                     MySnackbars.showErrorSnackbar(
