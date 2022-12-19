@@ -120,9 +120,5 @@ class LandingController extends GetxController {
   Future<void> signOut() async {
     await auth.value.signOut();
     Get.offAllNamed(MyRoutes.landingScreen);
-
-  //  Get.offUntil(GetPageRoute(page: () => const LandingScreen()), ModalRoute.withName('/LandingScreen') );
-   
-  //    Timer(const Duration(milliseconds: 300), ()=>Get.delete<LandingController>());
   }
 }
