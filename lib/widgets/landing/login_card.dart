@@ -144,9 +144,7 @@ class LoginCard extends StatelessWidget {
                         Buttons.Google,
                         text: 'continueWithGoogle'.tr,
                         onPressed: () {
-                          if ( ConnectivityService.connectionState == ConnectivityResult.wifi ||
-                    ConnectivityService.connectionState ==
-                        ConnectivityResult.mobile) {
+                          if (ConnectivityService.connectionState != ConnectivityResult.none) {
                             controller.signInWithGoogle();
                           } else {
                             MySnackbars.showErrorSnackbar(
@@ -167,9 +165,7 @@ class LoginCard extends StatelessWidget {
                               style: MyTextStyles.linkSmall,
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () async {
-                                  if ( ConnectivityService.connectionState == ConnectivityResult.wifi ||
-                    ConnectivityService.connectionState ==
-                        ConnectivityResult.mobile) {
+                                  if (ConnectivityService.connectionState != ConnectivityResult.none) {
                                     await launchUrlString(
                                         MyEndpoints.privacyPolicy,
                                         mode: LaunchMode.inAppWebView);

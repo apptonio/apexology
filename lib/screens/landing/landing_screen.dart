@@ -2,11 +2,15 @@ import 'package:apexology/constants/endpoints.dart';
 import 'package:apexology/constants/text_styles.dart';
 import 'package:apexology/screens/landing/landing_controller.dart';
 import 'package:apexology/widgets/landing/login_card.dart';
+import 'package:apexology/widgets/shared/snackbars.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher_string.dart';
+
+import '../../services/connectivity_service.dart';
 
 class LandingScreen extends GetView<LandingController> {
   const LandingScreen({super.key});
@@ -61,9 +65,13 @@ class LandingScreen extends GetView<LandingController> {
                             style: MyTextStyles.linkSmallWhite,
                             recognizer: TapGestureRecognizer()
                               ..onTap = () async {
+                                if (ConnectivityService.connectionState != ConnectivityResult.none){
                                 await launchUrlString(
                                     MyEndpoints.landingImagesContribution,
                                     mode: LaunchMode.inAppWebView);
+                                }else {
+                                  MySnackbars.showErrorSnackbar(message: 'noInternet'.tr);
+                                }
                               },
                           ),
                         ],

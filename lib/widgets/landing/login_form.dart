@@ -92,9 +92,7 @@ class LoginForm extends StatelessWidget {
                 Buttons.Email,
                 text: 'loginWithEmail'.tr,
                 onPressed: () {
-                  if ( ConnectivityService.connectionState == ConnectivityResult.wifi ||
-                    ConnectivityService.connectionState ==
-                        ConnectivityResult.mobile) {
+                  if (ConnectivityService.connectionState != ConnectivityResult.none) {
                     controller.loginWithEmail();
                   } else {
                     MySnackbars.showErrorSnackbar(
@@ -106,9 +104,7 @@ class LoginForm extends StatelessWidget {
                 Buttons.Email,
                 text: 'signupWithEmail'.tr,
                 onPressed: () {
-                  if ( ConnectivityService.connectionState == ConnectivityResult.wifi ||
-                    ConnectivityService.connectionState ==
-                        ConnectivityResult.mobile) {
+                  if ( ConnectivityService.connectionState != ConnectivityResult.none) {
                     controller.signUpWithEmail();
                   } else {
                     MySnackbars.showErrorSnackbar(

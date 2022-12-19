@@ -24,12 +24,7 @@ class HomeScreen extends StatelessWidget {
         ElevatedButton(
             onPressed: () => landingController.signOut(),
             child: const Text('Sign out')),
-        ElevatedButton(
-            onPressed: () => print(ConnectivityService.connectionState ==
-                    ConnectivityResult.wifi ||
-                ConnectivityService.connectionState ==
-                    ConnectivityResult.mobile),
-            child: const Text('Check connectivity'))
+      
       ],
     )));
   }
