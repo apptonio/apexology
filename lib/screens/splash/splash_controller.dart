@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:apexology/constants/pages.dart';
 import 'package:apexology/services/connectivity_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -17,9 +15,9 @@ class SplashController extends GetxController {
     connectivityService.checkConnection();
     auth.value.authStateChanges().listen((user) {
       if (user != null) {
-        Get.toNamed(MyRoutes.homeScreen);
+        Get.offAllNamed(MyRoutes.homeScreen);
       } else {
-        Get.toNamed(MyRoutes.landingScreen);
+        Get.offAllNamed(MyRoutes.landingScreen);
       }
     });
   }

@@ -5,9 +5,6 @@ import 'package:apexology/models/maps/maps.dart';
 import 'package:apexology/models/stats/stats.dart';
 import 'package:dio/dio.dart';
 import 'package:apexology/constants/endpoints.dart';
-//import 'package:flutter/material.dart';
-//import 'package:get/get.dart' as a;
-//import 'package:apexology/services/connectivity_service.dart';
 
 import '../models/news/news.dart';
 

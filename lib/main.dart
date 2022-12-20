@@ -10,10 +10,8 @@ import 'package:get/get.dart';
 import 'services/firebase_options.dart';
 
 Future<void> main() async {
-  
   WidgetsFlutterBinding.ensureInitialized();
 
-  /// Initialize Firebase
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -26,8 +24,8 @@ class InitialBinding extends Bindings {
   @override
   void dependencies() {
     Get
-    ..put(AppLifecycleService())
-    ..put(ConnectivityService());
+      ..put(AppLifecycleService())
+      ..put(ConnectivityService());
   }
 }
 

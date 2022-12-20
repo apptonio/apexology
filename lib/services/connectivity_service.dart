@@ -8,17 +8,15 @@ class ConnectivityService {
   dynamic checkConnection() async {
     if (await Connectivity().checkConnectivity() == ConnectivityResult.none) {
       connectionState = ConnectivityResult.none;
-      MySnackbars.showErrorSnackbar(message: "Please connect to the internet.");
+      MySnackbars.showErrorSnackbar(message: 'noInternet'.tr);
     }
   }
 
   static void connectivityListen() {
     Connectivity().onConnectivityChanged.listen((result) {
-      print(result);
       if (result == ConnectivityResult.none) {
         connectionState = result;
-        MySnackbars.showErrorSnackbar(
-            message: "Please connect to the internet.");
+        MySnackbars.showErrorSnackbar(message: 'noInternet'.tr);
       } else if (result == ConnectivityResult.wifi ||
           result == ConnectivityResult.mobile &&
               connectionState == ConnectivityResult.none) {

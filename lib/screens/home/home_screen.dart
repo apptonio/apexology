@@ -1,18 +1,16 @@
 import 'package:apexology/screens/landing/landing_controller.dart';
-import 'package:apexology/services/connectivity_service.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'home_controller.dart';
+//import 'home_controller.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final homeController = Get.put(HomeController());
+    //final homeController = Get.put(HomeController());
 
     final landingController = Get.put(LandingController());
 

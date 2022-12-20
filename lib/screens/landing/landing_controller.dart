@@ -1,8 +1,5 @@
 import 'dart:async';
 import 'package:apexology/constants/assets.dart';
-import 'package:apexology/constants/pages.dart';
-import 'package:apexology/screens/landing/landing_binding.dart';
-import 'package:apexology/screens/landing/landing_screen.dart';
 import 'package:apexology/widgets/shared/snackbars.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import '../../services/request_status.dart';
+//import '../../services/request_status.dart';
 
 class LandingController extends GetxController {
   final auth = FirebaseAuth.instance.obs;
@@ -20,7 +17,7 @@ class LandingController extends GetxController {
   final formKey = GlobalKey<FormBuilderState>().obs;
   final emailFocusNode = FocusNode().obs;
   final passwordFocusNode = FocusNode().obs;
-  final requestStatus = RequestStatus.LOADING.obs;
+  //final requestStatus = RequestStatus.LOADING.obs;
 
   List<String> landingCarouselList = [
     MyAssets.wraith,
@@ -32,20 +29,19 @@ class LandingController extends GetxController {
     MyAssets.gibraltar
   ];
 
-   @override
+  @override
   Future<void> onInit() async {
     super.onInit();
-    
   }
 
-   @override
+  @override
   void dispose() {
     emailFocusNode.value.dispose();
     passwordFocusNode.value.dispose();
     super.dispose();
   }
 
-  void setRequestStatus(RequestStatus value) => requestStatus.value = value;
+  //void setRequestStatus(RequestStatus value) => requestStatus.value = value;
 
   void loginWithEmail() async {
     final validationCheck = formKey.value.currentState?.validate();
@@ -119,6 +115,6 @@ class LandingController extends GetxController {
 
   Future<void> signOut() async {
     await auth.value.signOut();
-    Get.offAll(() => const LandingScreen());
+    Get.back();
   }
 }

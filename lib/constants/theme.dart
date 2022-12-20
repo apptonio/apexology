@@ -1,12 +1,6 @@
+import 'package:apexology/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'colors.dart';
-
-///
-/// Our main theme file where all colors,
-/// styles and similar are written.
-///
 
 final theme = ThemeData(
   useMaterial3: true,
