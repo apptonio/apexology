@@ -1,28 +1,25 @@
+import 'package:apexology/screens/home/home_controller.dart';
 import 'package:apexology/screens/landing/landing_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-//import 'home_controller.dart';
-
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends GetView<HomeController> {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    //final homeController = Get.put(HomeController());
-
     final landingController = Get.put(LandingController());
+    final userEmail = FirebaseAuth.instance.currentUser?.email ?? '';
 
     return Scaffold(
         body: Center(
             child: ListView(
       children: [
-        Text(FirebaseAuth.instance.currentUser?.email ?? ''),
+        Text(userEmail),
         ElevatedButton(
             onPressed: () => landingController.signOut(),
-            child: const Text('Sign out')),
-      
+            child: Text('signOut'.tr)),
       ],
     )));
   }

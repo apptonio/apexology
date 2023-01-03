@@ -13,7 +13,7 @@ class LandingScreen extends GetView<LandingController> {
         resizeToAvoidBottomInset: false,
         body: Center(
             child: Stack(
-          children: const [LandingCarousel(), LandingOverlay()],
+          children: [const LandingCarousel(), LandingOverlay()],
         )));
   }
 }

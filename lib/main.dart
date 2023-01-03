@@ -1,4 +1,4 @@
-import 'package:apexology/constants/localization.dart';
+import 'package:apexology/constants/localization/localization.dart';
 import 'package:apexology/constants/pages.dart';
 import 'package:apexology/services/app_lifecycle_service.dart';
 import 'package:apexology/constants/theme.dart';
@@ -7,6 +7,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'constants/routes.dart';
 import 'services/firebase_options.dart';
 
 Future<void> main() async {

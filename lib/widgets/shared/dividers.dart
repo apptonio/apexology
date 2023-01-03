@@ -1,5 +1,5 @@
 import 'package:apexology/constants/colors.dart';
-import 'package:apexology/widgets/shared/texts.dart';
+import 'package:apexology/constants/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -13,7 +13,10 @@ class MyDividers {
                 height: 36.h,
               )),
         ),
-        MyTexts.or(),
+        Text(
+        "OR",
+        style: MyTextStyles.body,
+      ),
         Expanded(
           child: Container(
               margin: EdgeInsets.symmetric(horizontal: 20.w),

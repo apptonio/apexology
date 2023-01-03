@@ -1,11 +1,17 @@
-import 'package:apexology/widgets/shared/buttons.dart';
+import 'package:apexology/constants/endpoints.dart';
 import 'package:apexology/widgets/shared/fades.dart';
 import 'package:apexology/widgets/shared/dividers.dart';
-import 'package:apexology/widgets/shared/texts.dart';
+import 'package:apexology/widgets/shared/rich_text.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:get/get.dart';
 import 'package:apexology/screens/landing/landing_controller.dart';
+
+import '../../constants/text_styles.dart';
+import '../../services/connectivity_service.dart';
+import '../shared/snackbars.dart';
 
 class LandingCard extends StatelessWidget {
   LandingCard({super.key});
@@ -27,15 +33,36 @@ class LandingCard extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  MyTexts.welcomeToApexology(),
+                  Text(
+                    'welcomeToApexology'.tr,
+                    style: MyTextStyles.header,
+                  ),
                   SizedBox(height: 10.h),
                   MyFades().landingCardGuide(),
                   SizedBox(height: 20.h),
                   MyFades().landingCardEmail(),
                   MyDividers.landingCardDivider(),
-                  MyButtons().continueWithGoogle(),
+                  SignInButton(
+                    Buttons.Google,
+                    text: 'continueWithGoogle'.tr,
+                    onPressed: () {
+                      if (ConnectivityService.connectionState !=
+                          ConnectivityResult.none) {
+                        controller.signInWithGoogle();
+                      } else {
+                        MySnackbars.showErrorSnackbar(message: 'noInternet'.tr);
+                      }
+                    },
+                  ),
                   SizedBox(height: 10.h),
-                  MyTexts.privacyPolicy(),
+                  MyRichText(
+                      normalText: 'privacyPolicy1'.tr,
+                      normalTextStyle: MyTextStyles.bodySmall,
+                      linkText: 'privacyPolicy2'.tr,
+                      linkTextStyle: MyTextStyles.linkSmall,
+                      action: () => controller.launchMyUrlOnTap(
+                            endpoint: MyEndpoints.privacyPolicy,
+                          ))
                 ],
               ),
             ),

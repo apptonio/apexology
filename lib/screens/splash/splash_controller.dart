@@ -1,7 +1,8 @@
-import 'package:apexology/constants/pages.dart';
 import 'package:apexology/services/connectivity_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+
+import '../../constants/routes.dart';
 
 class SplashController extends GetxController {
   final ConnectivityService connectivityService =

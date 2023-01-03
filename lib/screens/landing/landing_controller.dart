@@ -1,12 +1,15 @@
 import 'dart:async';
 import 'package:apexology/constants/assets.dart';
 import 'package:apexology/widgets/shared/snackbars.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:url_launcher/url_launcher_string.dart';
+import '../../services/connectivity_service.dart';
 //import '../../services/request_status.dart';
 
 class LandingController extends GetxController {
@@ -43,6 +46,14 @@ class LandingController extends GetxController {
 
   //void setRequestStatus(RequestStatus value) => requestStatus.value = value;
 
+  void launchMyUrlOnTap({required String endpoint}) async {
+    if (ConnectivityService.connectionState != ConnectivityResult.none) {
+      await launchUrlString(endpoint, mode: LaunchMode.inAppWebView);
+    } else {
+      MySnackbars.showErrorSnackbar(message: 'noInternet'.tr);
+    }
+  }
+
   void loginWithEmail() async {
     final validationCheck = formKey.value.currentState?.validate();
     if (validationCheck != null && validationCheck) {
@@ -51,15 +62,7 @@ class LandingController extends GetxController {
             email: formKey.value.currentState?.fields['email']?.value,
             password: formKey.value.currentState?.fields['password']?.value);
       } on FirebaseAuthException catch (e) {
-        if (e.code == 'wrong-password') {
-          MySnackbars.showErrorSnackbar(message: 'invalidPassword'.tr);
-        } else if (e.code == 'user-not-found') {
-          MySnackbars.showErrorSnackbar(message: 'userNotFound'.tr);
-        } else if (e.code == 'user-disabled') {
-          MySnackbars.showErrorSnackbar(message: 'disabledEmail'.tr);
-        } else if (e.code == 'invalid-email') {
-          MySnackbars.showErrorSnackbar(message: 'invalidEmail'.tr);
-        }
+        MySnackbars.showErrorSnackbar(message: e.message ?? 'unknownError'.tr);
       } on PlatformException catch (err) {
         var message = 'formError'.tr;
         if (err.message != null) {
@@ -80,13 +83,8 @@ class LandingController extends GetxController {
             email: formKey.value.currentState?.fields['email']?.value,
             password: formKey.value.currentState?.fields['password']?.value);
       } on FirebaseAuthException catch (err) {
-        if (err.code == 'weak-password') {
-          MySnackbars.showErrorSnackbar(message: 'weakPassword'.tr);
-        } else if (err.code == 'email-already-in-use') {
-          MySnackbars.showErrorSnackbar(message: 'emailAlreadyInUse'.tr);
-        } else if (err.code == 'invalid-email') {
-          MySnackbars.showErrorSnackbar(message: 'invalidEmail'.tr);
-        }
+        MySnackbars.showErrorSnackbar(
+            message: err.message ?? 'unknownError'.tr);
       } on PlatformException catch (e) {
         var message = 'formError'.tr;
         if (e.message != null) {

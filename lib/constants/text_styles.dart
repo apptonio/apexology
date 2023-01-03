@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'colors.dart';
 
-
 class MyTextStyles {
   static final header = GoogleFonts.roboto(
     color: MyColors.black,
@@ -42,6 +41,7 @@ class MyTextStyles {
     fontSize: 10.sp,
     fontWeight: FontWeight.w500,
   );
+
   static final linkSmallWhite = GoogleFonts.roboto(
     color: Colors.lightBlue,
     fontSize: 10.sp,

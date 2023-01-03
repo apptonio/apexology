@@ -1,3 +1,4 @@
+import 'package:apexology/constants/routes.dart';
 import 'package:apexology/screens/home/home_binding.dart';
 import 'package:apexology/screens/home/home_screen.dart';
 import 'package:apexology/screens/landing/landing_binding.dart';
@@ -24,9 +25,3 @@ final pages = [
     binding: HomeBinding(),
   ),
 ];
-
-class MyRoutes {
-  static const splashScreen = '/SplashScreen';
-  static const landingScreen = '/LandingScreen';
-  static const homeScreen = '/HomeScreen';
-}
