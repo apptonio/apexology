@@ -1,29 +1,118 @@
 import 'dart:async';
-
+import 'package:apexology/constants/assets.dart';
+import 'package:apexology/shared/snackbars.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
-
-
-///
-/// This is a controller in which we write logic concerning [HelloScreen]
-/// The controller uses a [StateMixin]
-/// We pass a variable type to the mixin and then get access to the `change` method
-/// We can set different states with it and then render proper Widget depending on the state
-///
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:url_launcher/url_launcher_string.dart';
+import '../../services/connectivity_service.dart';
+//import '../../services/request_status.dart';
 
 class LandingController extends GetxController {
-  ///
-  /// DEPENDENCIES
-  ///
-  ///
+  final auth = FirebaseAuth.instance.obs;
 
-  /// INIT
-  ///
+  var continueWithEmail = false.obs;
+  var signUp = false.obs;
+  final formKey = GlobalKey<FormBuilderState>().obs;
+  final emailFocusNode = FocusNode().obs;
+  final passwordFocusNode = FocusNode().obs;
+  //final requestStatus = RequestStatus.LOADING.obs;
+
+  List<String> landingCarouselList = [
+    MyAssets.wraith,
+    MyAssets.mirage,
+    MyAssets.caustic,
+    MyAssets.bloodhound,
+    MyAssets.bangalore,
+    MyAssets.lifeline,
+    MyAssets.gibraltar
+  ];
 
   @override
   Future<void> onInit() async {
     super.onInit();
   }
 
-  ///
-  /// METHODS
+  @override
+  void dispose() {
+    emailFocusNode.value.dispose();
+    passwordFocusNode.value.dispose();
+    super.dispose();
+  }
+
+  //void setRequestStatus(RequestStatus value) => requestStatus.value = value;
+
+  void launchMyUrlOnTap({required String endpoint}) async {
+    if (ConnectivityService.connectionState != ConnectivityResult.none) {
+      await launchUrlString(endpoint, mode: LaunchMode.inAppWebView);
+    } else {
+      MySnackbars.showErrorSnackbar(message: 'noInternet'.tr);
+    }
+  }
+
+  void loginWithEmail() async {
+    final validationCheck = formKey.value.currentState?.validate();
+    if (validationCheck != null && validationCheck) {
+      try {
+        await auth.value.signInWithEmailAndPassword(
+            email: formKey.value.currentState?.fields['email']?.value,
+            password: formKey.value.currentState?.fields['password']?.value);
+      } on FirebaseAuthException catch (e) {
+        MySnackbars.showErrorSnackbar(message: e.message ?? 'unknownError'.tr);
+      } on PlatformException catch (err) {
+        var message = 'formError'.tr;
+        if (err.message != null) {
+          message = err.message!;
+        }
+        MySnackbars.showErrorSnackbar(message: message);
+      }
+    } else {
+      MySnackbars.showErrorSnackbar(message: 'betterCredentials'.tr);
+    }
+  }
+
+  void signUpWithEmail() async {
+    final validationCheck = formKey.value.currentState?.validate();
+    if (validationCheck != null && validationCheck) {
+      try {
+        await auth.value.createUserWithEmailAndPassword(
+            email: formKey.value.currentState?.fields['email']?.value,
+            password: formKey.value.currentState?.fields['password']?.value);
+      } on FirebaseAuthException catch (err) {
+        MySnackbars.showErrorSnackbar(
+            message: err.message ?? 'unknownError'.tr);
+      } on PlatformException catch (e) {
+        var message = 'formError'.tr;
+        if (e.message != null) {
+          message = e.message!;
+        }
+        MySnackbars.showErrorSnackbar(message: message);
+      }
+    } else {
+      MySnackbars.showErrorSnackbar(message: 'betterCredentials'.tr);
+    }
+  }
+
+  Future<UserCredential> signInWithGoogle() async {
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    return await auth.value.signInWithCredential(credential);
+  }
+
+  Future<void> signOut() async {
+    await auth.value.signOut();
+    Get.back();
+  }
 }

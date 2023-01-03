@@ -1,9 +1,11 @@
-///
-/// This is a class where all assets are stored
-/// You can then reference them in code with `MyAssets.someAsset`
-///
-
 class MyAssets {
-  static const apexologyImage = 'assets/images/apexology.png';
-  static const apexologyIcon = 'assets/icons/apexology_icon.svg';
+  static const appIcon = 'assets/icons/appIcon.png';
+  static const landingPlaceholder = 'assets/images/landingPlaceholder.png';
+  static const wraith = 'assets/images/wraith.jpg';
+  static const mirage = 'assets/images/mirage.jpg';
+  static const caustic = 'assets/images/caustic.jpg';
+  static const bloodhound = 'assets/images/bloodhound.jpg';
+  static const bangalore = 'assets/images/bangalore.jpg';
+  static const lifeline = 'assets/images/lifeline.jpg';
+  static const gibraltar = 'assets/images/gibraltar.jpeg';
 }

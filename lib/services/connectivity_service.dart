@@ -1,28 +1,28 @@
+import 'package:apexology/shared/snackbars.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get/get.dart';
 
-///
-/// Service which uses the [Connectivity] plugin to
-/// trigger a method when internet connectivity changes
-///
-class ConnectivityService extends GetxService {
-  ///
-  /// DEPENDENCIES
-  ///
-  ///
-  bool isConnected = false;
+class ConnectivityService {
+  static ConnectivityResult? connectionState;
 
-  ///
-  /// Triggers a callback each time internet connection changes state
-  late final connectivityListener =
-      Connectivity().onConnectivityChanged.listen((result) {
-    if (result == ConnectivityResult.none) {
-      isConnected = false;
-      print(isConnected);
-    } else if (result == ConnectivityResult.wifi ||
-        result == ConnectivityResult.mobile) {
-      isConnected = true;
-      print(isConnected);
+  dynamic checkConnection() async {
+    if (await Connectivity().checkConnectivity() == ConnectivityResult.none) {
+      connectionState = ConnectivityResult.none;
+      MySnackbars.showErrorSnackbar(message: 'noInternet'.tr);
     }
-  });
+  }
+
+  static void connectivityListen() {
+    Connectivity().onConnectivityChanged.listen((result) {
+      if (result == ConnectivityResult.none) {
+        connectionState = result;
+        MySnackbars.showErrorSnackbar(message: 'noInternet'.tr);
+      } else if (result == ConnectivityResult.wifi ||
+          result == ConnectivityResult.mobile &&
+              connectionState == ConnectivityResult.none) {
+        connectionState = result;
+        Get.closeCurrentSnackbar();
+      }
+    });
+  }
 }

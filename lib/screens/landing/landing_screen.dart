@@ -1,22 +1,19 @@
+import 'package:apexology/screens/landing/landing_controller.dart';
+import 'package:apexology/screens/landing/widgets/landing_carousel.dart';
+import 'package:apexology/screens/landing/widgets/landing_overlay.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:share_plus/share_plus.dart';
 
-class LandingScreen extends StatelessWidget {
+class LandingScreen extends GetView<LandingController> {
   const LandingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: ElevatedButton(
-          child: const Text('Share Text'),
-          onPressed: () async {
-            const url = 'a';
-            await Share.share(url);
-          },
-        ),
-      ),
-    );
+        resizeToAvoidBottomInset: false,
+        body: Center(
+            child: Stack(
+          children: [const LandingCarousel(), LandingOverlay()],
+        )));
   }
 }

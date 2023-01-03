@@ -51,9 +51,10 @@ class HTTP {
 
   Future<List<Bundles>> getBundles() async {
     Response response = await client.get(MyEndpoints.bundles);
-    return (response.data as List).map((data) => Bundles.fromJson(data)).toList();
+    return (response.data as List)
+        .map((data) => Bundles.fromJson(data))
+        .toList();
   }
-
 }
 
 final http = HTTP();
