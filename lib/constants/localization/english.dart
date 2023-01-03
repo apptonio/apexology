@@ -20,6 +20,7 @@ final en = {
   'signUp': 'Sign up',
   'yesAccount': 'Already have an account? ',
   'logIn': 'Log in',
+  'or': 'OR',
   'continueWithEmail': 'Continue with Email',
   'continueWithGoogle': 'Continue with Google',
   'privacyPolicy1': 'By signing up you accept our ',

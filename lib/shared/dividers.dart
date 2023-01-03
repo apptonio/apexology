@@ -3,6 +3,7 @@ import 'package:apexology/constants/numbers.dart';
 import 'package:apexology/constants/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
 
 class MyDividers {
   static landingCardDivider() => Row(children: [
@@ -15,7 +16,7 @@ class MyDividers {
               )),
         ),
         Text(
-        "OR",
+        'or'.tr,
         style: MyTextStyles.body,
       ),
         Expanded(
