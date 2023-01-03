@@ -1,3 +1,4 @@
+import 'package:apexology/constants/numbers.dart';
 import 'package:apexology/screens/landing/landing_controller.dart';
 import 'package:apexology/shared/textfield.dart';
 import 'package:apexology/shared/fades.dart';
@@ -18,7 +19,7 @@ class LandingCardForm extends StatelessWidget {
         key: controller.formKey.value,
         child: SingleChildScrollView(
             child: Column(children: [
-          SizedBox(height: 5.h),
+          SizedBox(height: Numbers().sb5.h),
           MyTextfield(
               focusNode: controller.emailFocusNode.value,
               name: 'email',
@@ -27,7 +28,7 @@ class LandingCardForm extends StatelessWidget {
                 FormBuilderValidators.required(),
                 FormBuilderValidators.email()
               ])),
-          SizedBox(height: 20.h),
+          SizedBox(height: Numbers().sb20.h),
           MyTextfield(
               focusNode: controller.passwordFocusNode.value,
               name: 'password',
@@ -37,7 +38,7 @@ class LandingCardForm extends StatelessWidget {
                 FormBuilderValidators.match(
                     r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
               ])),
-          SizedBox(height: 20.h),
+          SizedBox(height: Numbers().sb20.h),
           MyFades().emailOption(),
         ]))));
   }

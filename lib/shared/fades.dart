@@ -1,3 +1,4 @@
+import 'package:apexology/constants/numbers.dart';
 import 'package:apexology/constants/text_styles.dart';
 import 'package:apexology/screens/landing/landing_controller.dart';
 import 'package:apexology/screens/landing/widgets/landing_card_form.dart';
@@ -31,11 +32,11 @@ class MyFades {
           crossFadeState: controller.signUp.value
               ? CrossFadeState.showSecond
               : CrossFadeState.showFirst,
-          duration: const Duration(milliseconds: 300)),
+          duration: Duration(milliseconds: Numbers().globalFadeDuration)),
       crossFadeState: controller.continueWithEmail.value
           ? CrossFadeState.showSecond
           : CrossFadeState.showFirst,
-      duration: const Duration(milliseconds: 300)));
+      duration: Duration(milliseconds: Numbers().globalFadeDuration)));
 
   landingCardEmail() => Obx(() => AnimatedCrossFade(
       firstChild: SignInButton(
@@ -49,7 +50,7 @@ class MyFades {
       crossFadeState: controller.continueWithEmail.value
           ? CrossFadeState.showSecond
           : CrossFadeState.showFirst,
-      duration: const Duration(milliseconds: 300)));
+      duration: Duration(milliseconds: Numbers().globalFadeDuration)));
 
   emailOption() => Obx(() => AnimatedCrossFade(
       firstChild:
@@ -74,5 +75,5 @@ class MyFades {
       crossFadeState: controller.signUp.value
           ? CrossFadeState.showSecond
           : CrossFadeState.showFirst,
-      duration: const Duration(milliseconds: 300)));
+      duration: Duration(milliseconds: Numbers().globalFadeDuration)));
 }

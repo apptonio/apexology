@@ -1,4 +1,5 @@
 import 'package:apexology/constants/endpoints.dart';
+import 'package:apexology/constants/numbers.dart';
 import 'package:apexology/constants/text_styles.dart';
 import 'package:apexology/services/connectivity_service.dart';
 import 'package:apexology/shared/snackbars.dart';
@@ -21,13 +22,15 @@ class LandingCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 32.w),
+        padding: EdgeInsets.symmetric(
+            horizontal: Numbers().globalHorizontalMargin.w),
         child: Card(
           shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16.0).r),
+              borderRadius:
+                  BorderRadius.circular(Numbers().globalBorderRadius).r),
           child: SizedBox(
             child: Padding(
-              padding: EdgeInsets.all(20.r),
+              padding: EdgeInsets.all(Numbers().globalHorizontalPadding.r),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -36,9 +39,9 @@ class LandingCard extends StatelessWidget {
                     'welcomeToApexology'.tr,
                     style: MyTextStyles.header,
                   ),
-                  SizedBox(height: 10.h),
+                  SizedBox(height: Numbers().sb10.h),
                   MyFades().landingCardGuide(),
-                  SizedBox(height: 20.h),
+                  SizedBox(height: Numbers().sb20.h),
                   MyFades().landingCardEmail(),
                   MyDividers.landingCardDivider(),
                   SignInButton(
@@ -53,7 +56,7 @@ class LandingCard extends StatelessWidget {
                       }
                     },
                   ),
-                  SizedBox(height: 10.h),
+                  SizedBox(height: Numbers().sb10.h),
                   MyRichText(
                       normalText: 'privacyPolicy1'.tr,
                       normalTextStyle: MyTextStyles.bodySmall,

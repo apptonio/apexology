@@ -1,4 +1,5 @@
 import 'package:apexology/constants/colors.dart';
+import 'package:apexology/constants/numbers.dart';
 import 'package:apexology/constants/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,9 +21,9 @@ class MySnackbars {
           message,
           style: MyTextStyles.bodySmallWhite,
         ),
-        margin: EdgeInsets.all(32.r),
-        padding: EdgeInsets.all(24.r),
-        borderRadius: 16.r,
+        margin: EdgeInsets.all(Numbers().globalHorizontalMargin.r),
+        padding: EdgeInsets.all(Numbers().globalHorizontalPadding.r),
+        borderRadius: Numbers().globalBorderRadius.r,
       );
 
   static void showErrorSnackbar({
@@ -40,8 +41,8 @@ class MySnackbars {
           message,
           style: MyTextStyles.bodySmallWhite,
         ),
-        margin: EdgeInsets.all(32.r),
-        padding: EdgeInsets.all(24.r),
-        borderRadius: 16.r,
+        margin: EdgeInsets.all(Numbers().globalHorizontalMargin.r),
+        padding: EdgeInsets.all(Numbers().globalHorizontalPadding.r),
+        borderRadius: Numbers().globalBorderRadius.r,
       );
 }
