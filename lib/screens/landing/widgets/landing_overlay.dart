@@ -2,8 +2,8 @@ import 'package:apexology/constants/colors.dart';
 import 'package:apexology/constants/endpoints.dart';
 import 'package:apexology/constants/text_styles.dart';
 import 'package:apexology/screens/landing/landing_controller.dart';
-import 'package:apexology/widgets/landing/landing_card.dart';
-import 'package:apexology/widgets/shared/rich_text.dart';
+import 'package:apexology/screens/landing/widgets/landing_card.dart';
+import 'package:apexology/shared/rich_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

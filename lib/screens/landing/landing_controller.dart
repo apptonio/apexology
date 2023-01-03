@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:apexology/constants/assets.dart';
-import 'package:apexology/widgets/shared/snackbars.dart';
+import 'package:apexology/shared/snackbars.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

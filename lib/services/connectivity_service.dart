@@ -1,4 +1,4 @@
-import 'package:apexology/widgets/shared/snackbars.dart';
+import 'package:apexology/shared/snackbars.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get/get.dart';
 

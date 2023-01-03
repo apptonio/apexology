@@ -1,6 +1,6 @@
 import 'package:apexology/screens/landing/landing_controller.dart';
-import 'package:apexology/widgets/landing/landing_carousel.dart';
-import 'package:apexology/widgets/landing/landing_overlay.dart';
+import 'package:apexology/screens/landing/widgets/landing_carousel.dart';
+import 'package:apexology/screens/landing/widgets/landing_overlay.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

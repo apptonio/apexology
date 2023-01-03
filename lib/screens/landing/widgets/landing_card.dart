@@ -1,17 +1,16 @@
 import 'package:apexology/constants/endpoints.dart';
-import 'package:apexology/widgets/shared/fades.dart';
-import 'package:apexology/widgets/shared/dividers.dart';
-import 'package:apexology/widgets/shared/rich_text.dart';
+import 'package:apexology/constants/text_styles.dart';
+import 'package:apexology/services/connectivity_service.dart';
+import 'package:apexology/shared/snackbars.dart';
+import 'package:apexology/shared/fades.dart';
+import 'package:apexology/shared/dividers.dart';
+import 'package:apexology/shared/rich_text.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:get/get.dart';
 import 'package:apexology/screens/landing/landing_controller.dart';
-
-import '../../constants/text_styles.dart';
-import '../../services/connectivity_service.dart';
-import '../shared/snackbars.dart';
 
 class LandingCard extends StatelessWidget {
   LandingCard({super.key});
