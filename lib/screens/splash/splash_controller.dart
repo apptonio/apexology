@@ -16,7 +16,7 @@ class SplashController extends GetxController {
     connectivityService.checkConnection();
     auth.value.authStateChanges().listen((user) {
       if (user != null) {
-        Get.offAllNamed(MyRoutes.homeScreen);
+        Get.offAllNamed(MyRoutes.introScreen);
       } else {
         Get.offAllNamed(MyRoutes.landingScreen);
       }
